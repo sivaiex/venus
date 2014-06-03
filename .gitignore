@@ -8,6 +8,4 @@
 /.settings
 /db.h2.db
 /testdb.h2.db
-
-/.classpath
-/.project
+/.target
