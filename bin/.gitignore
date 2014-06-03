@@ -1,1 +1,11 @@
-/pom.xml
+/assets
+/configs
+/controllers
+/models
+/services
+/views
+/ApplicationTest.class
+/BarServiceTest.class
+/BarTest.class
+/Global.class
+/TestDataConfig.class
