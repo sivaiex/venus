@@ -1,35 +1,33 @@
 package controllers;
 
-import models.Group;
+
+import models.Bar;
+import org.springframework.beans.factory.annotation.Autowired;
 import play.data.Form;
-import play.mvc.Controller;
+import play.libs.Json;
 import play.mvc.Result;
+import services.BarService;
+import views.html.index;
 
-public class Application extends Controller {
-	static Form<Group> groupForm = Form(Group.class);
+@org.springframework.stereotype.Controller
+public class Application {
 
-	public static Result index() throws Exception {
-		// redirect to the "group Result
-		return redirect(routes.Application.group());
-	}
+    @Autowired
+    private BarService barService;
 
-	public static Result group() {
-		return ok(views.html.index.render(Group.all(), groupForm));
-	}
+    public Result index() {
+        return play.mvc.Controller.ok(index.render(Form.form(Bar.class)));
+    }
 
-	public static Result newGroup() {
-		Form<Group> filledForm = groupForm.bindFromRequest();
-		if(filledForm.hasErrors()) {
-			return badRequest(views.html.index.render(Group.all(), filledForm));
-		} else {
-			Group.create(filledForm.get());
-			return redirect(routes.Application.group());  
-		}
-	}
-	
-	public static Result deleteGroup(String id) {
-		Group.delete(id);
-		return redirect(routes.Application.group());
-	}
+    public Result addBar() {
+        Form<Bar> form = Form.form(Bar.class).bindFromRequest();
+        Bar bar = form.get();
+        barService.addBar(bar);
+        return play.mvc.Controller.redirect(controllers.routes.Application.index());
+    }
 
+    public Result listBars() {
+        return play.mvc.Controller.ok(Json.toJson(barService.getAllBars()));
+    }
+    
 }
