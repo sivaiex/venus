@@ -18,17 +18,13 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-    <artifactId>wicket-tutorial</artifactId>
-    <groupId>org.wicketTutorial</groupId>
-    <version>1.0</version>
-  </parent>
-	<groupId>org.wicketTutorial</groupId>
-	<artifactId>SpringInjectionExample</artifactId>
+	
+	<groupId>com.iexsoft.venus</groupId>
+	<artifactId>venus</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 		<!-- TODO project name  -->
-	<name>SpringInjectionExample</name>
+	<name>Venus</name>
 	<!--
 		<organization>
 			<name>company name</name>
