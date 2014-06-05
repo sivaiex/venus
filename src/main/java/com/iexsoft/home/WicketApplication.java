@@ -14,17 +14,16 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.wicketTutorial;
+package com.iexsoft.home;
 
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.wicketTutorial.ejbBean.EnterpriseMessage;
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
  * 
- * @see org.wicketTutorial.Start#main(String[])
+ * @see com.iexsoft.home.Start#main(String[])
  */
 public class WicketApplication extends WebApplication
 {    	
