@@ -44,10 +44,10 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+	/*	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		ctx.scan("org.wicketTutorial.ejbBean");
 		ctx.refresh();
 		
-		getComponentInstantiationListeners().add(new SpringComponentInjector(this, ctx));
+		getComponentInstantiationListeners().add(new SpringComponentInjector(this, ctx));*/
 	}
 }
