@@ -12,12 +12,15 @@ import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wicketstuff.annotation.mount.MountPath;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 import com.iexsoft.domain.School;
 import com.iexsoft.domain.Student;
 import com.iexsoft.service.DomainService;
 
+
+@MountPath(value = "student")
 public class StudentPage extends WebPage {
 	private static final long serialVersionUID = 1L;
 	private static Logger log = LoggerFactory.getLogger(StudentPage.class);

@@ -13,11 +13,13 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wicketstuff.annotation.mount.MountPath;
 
 import com.iexsoft.domain.Student;
 import com.iexsoft.school.SchoolPage;
 import com.iexsoft.service.DomainService;
 
+@MountPath(value = "student/list")
 public class StudentListPage extends WebPage {
 	private static final long serialVersionUID = 1L;
 	private static Logger log = LoggerFactory.getLogger(StudentListPage.class);

@@ -4,6 +4,7 @@ package com.iexsoft.home;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.bean.validation.BeanValidationConfiguration;
+import org.wicketstuff.annotation.scan.AnnotatedMountScanner;
 
 
 /**
@@ -32,5 +33,6 @@ public class WicketApplication extends WebApplication
 		
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 		new BeanValidationConfiguration().configure(this);
+		new AnnotatedMountScanner().scanPackage("com.iexsoft").mount(this);
 	}
 }
