@@ -1,10 +1,16 @@
 package com.iexsoft.domain;
 
+import java.io.Serializable;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
 @Document(collection="student")
-public class Student {
+public class Student implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4093982725442212490L;
 	@Id
 	private String id;
 	private String name;

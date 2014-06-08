@@ -1,15 +1,23 @@
 package com.iexsoft.domain;
 
+import java.io.Serializable;
 import java.util.Date;
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection="school")
-public class School {
+public class School implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4065197733627571051L;
 	@Id
 	private String id;
+	@NotNull
 	private String name;
 	@Field("reg-number")
 	private String regNumber;
@@ -29,6 +37,7 @@ public class School {
 	private String phoneNumber1;
 	@Field("second-phone")
 	private String phoneNumber2;
+	
 	private String email;
 	private String correspondant;
 	

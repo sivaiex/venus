@@ -18,8 +18,13 @@ public class HomePage extends WebPage {
 	
     public HomePage(final PageParameters parameters) {
 		super(parameters);
+		
+		add(new Label("header", "Here the Header HTML GOES..."));
 		add(new Label("message", "Welcome to Venus"));
 		add(getSchoolLink());
+		add(new Label("footer", "@copy right, iexsoft LLC, 2014"));
+		
+		
     }
     
     private Link getSchoolLink(){
