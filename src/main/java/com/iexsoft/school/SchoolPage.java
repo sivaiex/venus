@@ -1,5 +1,6 @@
 package com.iexsoft.school;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.wicket.markup.html.WebPage;
@@ -9,10 +10,8 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 import com.iexsoft.domain.School;
@@ -23,12 +22,12 @@ public class SchoolPage extends WebPage {
 	private static Logger log = LoggerFactory.getLogger(SchoolPage.class);
 
 	@SpringBean
-	DomainService domnainService;
+	DomainService domainService;
 
 	public SchoolPage(final PageParameters parameters) {
 		super(parameters);
 
-		List<School> schoolList = domnainService.getSchoolRepository()
+		List<School> schoolList = domainService.getSchoolRepository()
 				.findAll();
 		School school = null;
 
@@ -57,19 +56,22 @@ public class SchoolPage extends WebPage {
 			TextField<String> nameField = new TextField<String>("name");
 			nameField.add(new PropertyValidator<String>());
 			TextField<String> regField = new TextField<String>("regNumber");
-		//	TextField<String> nameField = new TextField<String>("establishedDate");
+			TextField<Date> establishedDateField = new TextField<Date>("establishedDate");
 			TextField<String> add1Field = new TextField<String>("addressLine1");
 			TextField<String> add2Field = new TextField<String>("addressLine2");
 			TextField<String> cityField = new TextField<String>("city");
 			TextField<String> stateField = new TextField<String>("state");
 			TextField<String> postalCodeField = new TextField<String>("postalCode");
+			postalCodeField.add(new PropertyValidator<String>());
 			TextField<String> phone1Field = new TextField<String>("phoneNumber1");
 			TextField<String> phone2Field = new TextField<String>("phoneNumber2");
 			TextField<String> emailField = new TextField<String>("email");
+			emailField.add(new PropertyValidator<String>());
 			
 
 			add(nameField);
 			add(regField);
+			add(establishedDateField);
 			add(add1Field);
 			add(add2Field);
 			add(cityField);
@@ -85,7 +87,7 @@ public class SchoolPage extends WebPage {
 		public final void onSubmit() {
 
 			School school = getModelObject();
-			domnainService.getSchoolRepository().save(school);
+			domainService.getSchoolRepository().save(school);
 
 			log.debug("school name:" + school.getName());
 

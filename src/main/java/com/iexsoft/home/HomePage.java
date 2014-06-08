@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.iexsoft.school.SchoolPage;
+import com.iexsoft.student.StudentListPage;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +23,7 @@ public class HomePage extends WebPage {
 		add(new Label("header", "Here the Header HTML GOES..."));
 		add(new Label("message", "Welcome to Venus"));
 		add(getSchoolLink());
+		add(getStudentListLink());
 		add(new Label("footer", "@copy right, iexsoft LLC, 2014"));
 		
 		
@@ -33,6 +35,18 @@ public class HomePage extends WebPage {
     		@Override
     		public void onClick() {
     			setResponsePage(SchoolPage.class);
+    			
+    		}
+		};
+		return link;
+    }
+    
+    private Link getStudentListLink(){
+    	Link link = new Link("studentList") {
+    		
+    		@Override
+    		public void onClick() {
+    			setResponsePage(StudentListPage.class);
     			
     		}
 		};

@@ -8,6 +8,6 @@ import com.iexsoft.domain.School;
 import com.iexsoft.domain.Student;
 
 public interface SchoolRepository extends MongoRepository<School, String>{
-	List<Student> findByName(String name);
+	List<School> findByName(String name);
 	
 }

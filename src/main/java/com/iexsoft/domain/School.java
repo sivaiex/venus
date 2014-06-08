@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import javax.validation.constraints.Pattern;
 
 @Document(collection="school")
 public class School implements Serializable {
@@ -17,7 +18,7 @@ public class School implements Serializable {
 	private static final long serialVersionUID = -4065197733627571051L;
 	@Id
 	private String id;
-	@NotNull
+	@NotNull(message = "{school.nameRequired}")
 	private String name;
 	@Field("reg-number")
 	private String regNumber;
@@ -29,8 +30,11 @@ public class School implements Serializable {
 	private String addressLine2;
 	private String city;
 	private String state;
+	
 	@Field("postal-code")
+	@Pattern(regexp = "\\d+", message = "{address.invalidPostalCode}")
 	private String postalCode;
+	
 	@Field("logo-image")
 	private byte[] logoImage;
 	@Field("first-phone")
@@ -38,6 +42,8 @@ public class School implements Serializable {
 	@Field("second-phone")
 	private String phoneNumber2;
 	
+
+	@Pattern(regexp = "^[_A-Za-z0-9-]+(.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(.[A-Za-z0-9-]+)*((.[A-Za-z]{2,}){1}$)", message = "{school.invalidEmail}")
 	private String email;
 	private String correspondant;
 	
