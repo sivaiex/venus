@@ -152,6 +152,7 @@ public class DomainService {
 
 		// Adding all repos to Map, so that we can easily retrieve the required
 		// repository
+		log.debug("adding all repos to repoMap....");
 		repoMap = new HashMap<String, MongoRepository>();
 
 		repoMap.put(StudentRepository.class.getName(), studentRepository);
