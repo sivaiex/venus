@@ -2,25 +2,17 @@ package com.iexsoft.domain.secondaries;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.iexsoft.domain.Domain;
+
 @Document(collection = "staff_type")
-public class StaffType implements Serializable {
-	
+public class StaffType extends Domain implements Serializable {
+
 	private static final long serialVersionUID = -3303846022082797920L;
-	@Id
-	private String id;
+
 	private String name;
 	private String description;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;

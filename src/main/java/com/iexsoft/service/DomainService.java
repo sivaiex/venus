@@ -1,11 +1,15 @@
 package com.iexsoft.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 
 import com.iexsoft.config.ConfigData;
@@ -70,16 +74,20 @@ public class DomainService {
 
 	@Autowired
 	private StudentRecordRepository studentRecordRepository;
-	
+
 	@Autowired
 	private FeeRepository feeRepository;
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
+	@SuppressWarnings("rawtypes")
+	private Map<String, MongoRepository> repoMap;
+
 	/*
 	 * Any pre-loading of configuration data etc..
 	 */
+	@SuppressWarnings("rawtypes")
 	@PostConstruct
 	private void init() {
 		log.debug("Initializing application....");
@@ -126,72 +134,35 @@ public class DomainService {
 			subjectRepository.save(ConfigData.getAllDefaultSubjects());
 		}
 
+		// Adding all repos to Map, so that we can easily retrieve the required
+		// repository
+		repoMap = new HashMap<String, MongoRepository>();
+
+		repoMap.put(StudentRepository.class.getName(), studentRepository);
+		repoMap.put(SchoolRepository.class.getName(), schoolRepository);
+		repoMap.put(ClassTypeRepository.class.getName(), classTypeRepository);
+		repoMap.put(FeeConcessionRepository.class.getName(),
+				feeConcessionRepository);
+		repoMap.put(FeePaidStatusRepository.class.getName(),
+				feePaidStatusRepository);
+		repoMap.put(FeeTypeRepository.class.getName(), feeTypeRepository);
+		repoMap.put(RoleRepository.class.getName(), roleRepository);
+		repoMap.put(StaffTypeRepository.class.getName(), staffTypeRepository);
+		repoMap.put(StudentAttendanceStatusRepository.class.getName(),
+				studentAttendanceStatusRepository);
+		repoMap.put(SubjectRepository.class.getName(), subjectRepository);
+		repoMap.put(TestTypeRepository.class.getName(), testTypeRepository);
+		repoMap.put(ParentRepository.class.getName(), parentRepository);
+		repoMap.put(StudyClassRepository.class.getName(), studyClassRepository);
+		repoMap.put(StudentRecordRepository.class.getName(),
+				studentRecordRepository);
+		repoMap.put(FeeRepository.class.getName(), feeRepository);
+
 	}
 
-	/*
-	 * all the getter methods to repositories
-	 */
-
-	public StudentRepository getStudentRepository() {
-		return studentRepository;
-	}
-
-	public SchoolRepository getSchoolRepository() {
-		return schoolRepository;
-	}
-
-	public ClassTypeRepository getClassTypeRepository() {
-		return classTypeRepository;
-	}
-
-	public FeeConcessionRepository getFeeConcessionRepository() {
-		return feeConcessionRepository;
-	}
-
-	public FeePaidStatusRepository getFeePaidStatusRepository() {
-		return feePaidStatusRepository;
-	}
-
-	public FeeTypeRepository getFeeTypeRepository() {
-		return feeTypeRepository;
-	}
-
-	public RoleRepository getRoleRepository() {
-		return roleRepository;
-	}
-
-	public StaffTypeRepository getStaffTypeRepository() {
-		return staffTypeRepository;
-	}
-
-	public StudentAttendanceStatusRepository getStudentAttendanceStatusRepository() {
-		return studentAttendanceStatusRepository;
-	}
-
-	public SubjectRepository getSubjectRepository() {
-		return subjectRepository;
-	}
-
-	public TestTypeRepository getTestTypeRepository() {
-		return testTypeRepository;
-	}
-
-	public ParentRepository getParentRepository() {
-		return parentRepository;
-	}
-
-	public StudyClassRepository getStudyClassRepository() {
-		return studyClassRepository;
-	}
-
-	public StudentRecordRepository getStudentRecordRepository() {
-		return studentRecordRepository;
-	}
-
-	public FeeRepository getFeeRepository() {
-		return feeRepository;
-	}
 	
-	
+	public <T> T getRepository(final Class<T> type) {
+		return type.cast(repoMap.get(type.getName()));
+	}
 
 }

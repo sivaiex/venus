@@ -5,41 +5,31 @@ import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection="fee")
-public class Fee implements Serializable {
+@Document(collection = "fee")
+public class Fee extends Domain implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4093982725442212490L;
-	@Id
-	private String id;
+
 	@NotNull
 	@Field("fee_type")
 	private String feeType;
 	@NotNull
 	@Field("class_id")
 	private String studyClass;
-	
+
 	@Field("amount")
 	private String amount;
-	
+
 	@Field("start_date")
 	private Date startDate;
-	
+
 	@Field("end_date")
 	private Date endDate;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getFeeType() {
 		return feeType;
@@ -80,6 +70,5 @@ public class Fee implements Serializable {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	
-	
+
 }

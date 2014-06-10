@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import com.iexsoft.domain.Student;
+import com.iexsoft.repositories.StudentRepository;
 import com.iexsoft.service.DomainService;
 
 @MountPath(value = "students")
@@ -29,7 +30,7 @@ public class StudentListPage extends WebPage {
 	public StudentListPage(final PageParameters parameters) {
 		super(parameters);
         log.debug("Students list page");
-		List<Student> studentList = domainService.getStudentRepository()
+		List<Student> studentList = domainService.getRepository(StudentRepository.class)
 				.findAll();
 	
 		

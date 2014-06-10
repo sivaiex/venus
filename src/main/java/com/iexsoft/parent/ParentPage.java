@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import com.iexsoft.domain.Parent;
+import com.iexsoft.repositories.ParentRepository;
 import com.iexsoft.service.DomainService;
 
 
@@ -68,7 +69,7 @@ public class ParentPage extends WebPage {
 		public final void onSubmit() {
 
 			Parent parent = getModelObject();
-			domainService.getParentRepository().save(parent);
+			domainService.getRepository(ParentRepository.class).save(parent);
 
 			log.debug("student name:" + parent.getFirstName());
 			setResponsePage(ParentListPage.class);

@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import com.iexsoft.domain.Parent;
+import com.iexsoft.repositories.ParentRepository;
 import com.iexsoft.service.DomainService;
 
 @MountPath(value = "parents")
@@ -29,8 +30,7 @@ public class ParentListPage extends WebPage {
 	public ParentListPage(final PageParameters parameters) {
 		super(parameters);
         log.debug("Parent List Page");
-		List<Parent> parentList = domainService.getParentRepository()
-				.findAll();
+		List<Parent> parentList = domainService.getRepository(ParentRepository.class).findAll();
 	
 		
 		ListDataProvider<Parent> listDataProvider = new ListDataProvider<Parent>(parentList);

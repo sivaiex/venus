@@ -5,61 +5,51 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection="parent")
-public class Parent implements Serializable {
+@Document(collection = "parent")
+public class Parent extends Domain implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4093982725442212490L;
-	@Id
-	private String id;
+
 	@NotNull
 	@Field("first_name")
 	private String firstName;
 	@NotNull
 	@Field("last_name")
 	private String lastName;
-	
+
 	@Field("sex")
 	private String sex;
-	
+
 	@Field("address_line1")
 	private String addressLine1;
 	@Field("address_line2")
 	private String addressLine2;
 	private String city;
 	private String state;
-	
+
 	@Field("postal_code")
 	@Pattern(regexp = "\\d+", message = "{address.invalidPostalCode}")
 	private String postalCode;
-	
+
 	@Pattern(regexp = "^[_A-Za-z0-9-]+(.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(.[A-Za-z0-9-]+)*((.[A-Za-z]{2,}){1}$)", message = "{school.invalidEmail}")
 	private String email;
-	
+
 	@Field("sms")
 	private boolean allowSMS;
-	
+
 	@Field("primary_phone")
 	private String primaryPhone;
-	
+
 	@Field("mobile_phone")
 	private String mobilePhone;
-	
+
 	@Field("auth")
 	private boolean portalAccess;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -164,7 +154,5 @@ public class Parent implements Serializable {
 	public void setPortalAccess(boolean portalAccess) {
 		this.portalAccess = portalAccess;
 	}
-	
-	
-	
+
 }

@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import com.iexsoft.domain.Student;
+import com.iexsoft.repositories.StudentRepository;
 import com.iexsoft.service.DomainService;
 
 
@@ -68,7 +69,7 @@ public class StudentPage extends WebPage {
 		public final void onSubmit() {
 
 			Student student = getModelObject();
-			domainService.getStudentRepository().save(student);
+			domainService.getRepository(StudentRepository.class).save(student);
 
 			log.debug("student name:" + student.getFirstName());
 			setResponsePage(StudentListPage.class);

@@ -2,29 +2,21 @@ package com.iexsoft.domain.secondaries;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.iexsoft.domain.Domain;
+
 @Document(collection = "fee_concession")
-public class FeeConcession implements Serializable {
-	
+public class FeeConcession extends Domain implements Serializable {
+
 	private static final long serialVersionUID = 774728290821248715L;
-	@Id
-	private String id;
+
 	@Field("fee-type")
 	private String feeType;
 	@Field("class-id")
 	private String classId;
 	private String[] concessions;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getFeeType() {
 		return feeType;
@@ -49,7 +41,5 @@ public class FeeConcession implements Serializable {
 	public void setConcessions(String[] concessions) {
 		this.concessions = concessions;
 	}
-
-	
 
 }

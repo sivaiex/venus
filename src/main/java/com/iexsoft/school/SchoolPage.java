@@ -3,19 +3,20 @@ package com.iexsoft.school;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.bean.validation.PropertyValidator;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.wicketstuff.annotation.mount.MountPath;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 import com.iexsoft.domain.School;
+import com.iexsoft.repositories.SchoolRepository;
 import com.iexsoft.service.DomainService;
 
 
@@ -30,7 +31,7 @@ public class SchoolPage extends WebPage {
 	public SchoolPage(final PageParameters parameters) {
 		super(parameters);
 
-		List<School> schoolList = domainService.getSchoolRepository()
+		List<School> schoolList = domainService.getRepository(SchoolRepository.class)
 				.findAll();
 		School school = null;
 
@@ -90,7 +91,7 @@ public class SchoolPage extends WebPage {
 		public final void onSubmit() {
 
 			School school = getModelObject();
-			domainService.getSchoolRepository().save(school);
+			domainService.getRepository(SchoolRepository.class).save(school);
 
 			log.debug("school name:" + school.getName());
 
