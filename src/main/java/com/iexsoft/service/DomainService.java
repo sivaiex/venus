@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 
 import com.iexsoft.config.ConfigData;
+import com.iexsoft.repositories.ClassTimeTableRepository;
 import com.iexsoft.repositories.ClassTypeRepository;
 import com.iexsoft.repositories.FeeConcessionRepository;
 import com.iexsoft.repositories.FeePaidStatusRepository;
@@ -22,7 +23,10 @@ import com.iexsoft.repositories.ParentRepository;
 import com.iexsoft.repositories.RoleRepository;
 import com.iexsoft.repositories.SchoolRepository;
 import com.iexsoft.repositories.StaffTypeRepository;
+import com.iexsoft.repositories.StudentAccountRepository;
 import com.iexsoft.repositories.StudentAttendanceStatusRepository;
+import com.iexsoft.repositories.StudentMarksRepository;
+import com.iexsoft.repositories.StudentPromotionRepository;
 import com.iexsoft.repositories.StudentRecordRepository;
 import com.iexsoft.repositories.StudentRepository;
 import com.iexsoft.repositories.StudyClassRepository;
@@ -77,6 +81,18 @@ public class DomainService {
 
 	@Autowired
 	private FeeRepository feeRepository;
+
+	@Autowired
+	private ClassTimeTableRepository classTimeTableRepository;
+
+	@Autowired
+	private StudentAccountRepository studentAccountRepository;
+	
+	@Autowired
+	private StudentMarksRepository studentMarksRepository;
+	
+	@Autowired
+	private StudentPromotionRepository studentPromotionRepository;
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
@@ -157,10 +173,14 @@ public class DomainService {
 		repoMap.put(StudentRecordRepository.class.getName(),
 				studentRecordRepository);
 		repoMap.put(FeeRepository.class.getName(), feeRepository);
+		repoMap.put(StudentAccountRepository.class.getName(),
+				studentAccountRepository);
+		repoMap.put(ClassTimeTableRepository.class.getName(), classTimeTableRepository);
+		repoMap.put(StudentMarksRepository.class.getName(), studentMarksRepository);
+		repoMap.put(StudentPromotionRepository.class.getName(), studentPromotionRepository);
 
 	}
 
-	
 	public <T> T getRepository(final Class<T> type) {
 		return type.cast(repoMap.get(type.getName()));
 	}
