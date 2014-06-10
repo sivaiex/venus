@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+	<div id="parentForm">
+	    Enter Parent Details:
+		<form id="parentForm" method="get" wicket:id="parentForm">
+		   
+			<table>
+				<tr><td>First Name: </td> <td><input wicket:id="firstName" type="text" id="firstName" /></td></tr>
+				<tr><td>Last Number:</td><td> <input wicket:id="lastName" type="text" id="lastName" /></td></tr>
+				<tr><td>Gender:</td><td> <input wicket:id="sex" type="text" id="sex" /></td></tr>
+			
+		  </table>
+			<p>
+				<input type="submit" name="Save" value="Save" />
+			</p>
+
+         <div wicket:id="feedback">
+		</div>
+		</form>
+	</div>
+</body>
+</html>

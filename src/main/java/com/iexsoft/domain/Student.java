@@ -18,10 +18,10 @@ public class Student implements Serializable {
 	@Id
 	private String id;
 	@NotNull
-	@Field("first-name")
+	@Field("first_name")
 	private String firstName;
 	@NotNull
-	@Field("last-name")
+	@Field("last_name")
 	private String lastName;
 	@Field("dob")
 	private Date dateOfBirth;
@@ -35,9 +35,9 @@ public class Student implements Serializable {
     private Date dateOfSecondRelieving;
     private String father;
     private String mother;
-    @Field("class-id")
+    @Field("class_id")
     private String classId;
-    @Field("concession-id")
+    @Field("concession_id")
     private String concessionId;
     @Field("access")
     private boolean hasAccess;

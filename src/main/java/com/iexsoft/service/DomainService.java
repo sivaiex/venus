@@ -2,6 +2,8 @@ package com.iexsoft.service;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
@@ -10,17 +12,22 @@ import com.iexsoft.config.ConfigData;
 import com.iexsoft.repositories.ClassTypeRepository;
 import com.iexsoft.repositories.FeeConcessionRepository;
 import com.iexsoft.repositories.FeePaidStatusRepository;
+import com.iexsoft.repositories.FeeRepository;
 import com.iexsoft.repositories.FeeTypeRepository;
+import com.iexsoft.repositories.ParentRepository;
 import com.iexsoft.repositories.RoleRepository;
 import com.iexsoft.repositories.SchoolRepository;
 import com.iexsoft.repositories.StaffTypeRepository;
 import com.iexsoft.repositories.StudentAttendanceStatusRepository;
+import com.iexsoft.repositories.StudentRecordRepository;
 import com.iexsoft.repositories.StudentRepository;
+import com.iexsoft.repositories.StudyClassRepository;
 import com.iexsoft.repositories.SubjectRepository;
 import com.iexsoft.repositories.TestTypeRepository;
 
 @Service
 public class DomainService {
+	private static Logger log = LoggerFactory.getLogger(DomainService.class);
 
 	@Autowired
 	private StudentRepository studentRepository;
@@ -56,6 +63,18 @@ public class DomainService {
 	private TestTypeRepository testTypeRepository;
 
 	@Autowired
+	private ParentRepository parentRepository;
+
+	@Autowired
+	private StudyClassRepository studyClassRepository;
+
+	@Autowired
+	private StudentRecordRepository studentRecordRepository;
+	
+	@Autowired
+	private FeeRepository feeRepository;
+
+	@Autowired
 	private MongoTemplate mongoTemplate;
 
 	/*
@@ -63,36 +82,47 @@ public class DomainService {
 	 */
 	@PostConstruct
 	private void init() {
+		log.debug("Initializing application....");
 		// Roles
 		if (roleRepository.findAll().size() == 0) {
+			log.debug("Loading Default Roles ....");
 			roleRepository.save(ConfigData.getAllDefaultRoles());
 		}
-		//Staff Type
+		// Staff Type
 		if (staffTypeRepository.findAll().size() == 0) {
+			log.debug("Loading Default Staff Types ....");
 			staffTypeRepository.save(ConfigData.getAllDefaultStaffTypes());
 		}
-		//Class Type
+		// Class Type
 		if (classTypeRepository.findAll().size() == 0) {
+			log.debug("Loading Default Class Types  ....");
 			classTypeRepository.save(ConfigData.getAllDefaultClassTypes());
 		}
-		//Fee Type
+		// Fee Type
 		if (feeTypeRepository.findAll().size() == 0) {
+			log.debug("Loading Default Fee Types ....");
 			feeTypeRepository.save(ConfigData.getAllDefaultFeeTypes());
 		}
-		//Test Type
+		// Test Type
 		if (testTypeRepository.findAll().size() == 0) {
+			log.debug("Loading Default Test Types ....");
 			testTypeRepository.save(ConfigData.getAllDefaultTestTypes());
 		}
-		//Fee Paid Status
+		// Fee Paid Status
 		if (feePaidStatusRepository.findAll().size() == 0) {
-			feePaidStatusRepository.save(ConfigData.getAllDefaultFeePaidStatus());
+			log.debug("Loading Default Fee Paid Statuses ....");
+			feePaidStatusRepository.save(ConfigData
+					.getAllDefaultFeePaidStatus());
 		}
-		//Student Attendance Status
+		// Student Attendance Status
 		if (studentAttendanceStatusRepository.findAll().size() == 0) {
-			studentAttendanceStatusRepository.save(ConfigData.getAllDefaultStudentAttendanceStatus());
+			log.debug("Loading Default Attendance Status ....");
+			studentAttendanceStatusRepository.save(ConfigData
+					.getAllDefaultStudentAttendanceStatus());
 		}
-		//Subject
+		// Subject
 		if (subjectRepository.findAll().size() == 0) {
+			log.debug("Loading Default Subjects ....");
 			subjectRepository.save(ConfigData.getAllDefaultSubjects());
 		}
 
@@ -101,6 +131,7 @@ public class DomainService {
 	/*
 	 * all the getter methods to repositories
 	 */
+
 	public StudentRepository getStudentRepository() {
 		return studentRepository;
 	}
@@ -113,83 +144,54 @@ public class DomainService {
 		return classTypeRepository;
 	}
 
-	public void setClassTypeRepository(ClassTypeRepository classTypeRepository) {
-		this.classTypeRepository = classTypeRepository;
-	}
-
 	public FeeConcessionRepository getFeeConcessionRepository() {
 		return feeConcessionRepository;
-	}
-
-	public void setFeeConcessionRepository(
-			FeeConcessionRepository feeConcessionRepository) {
-		this.feeConcessionRepository = feeConcessionRepository;
 	}
 
 	public FeePaidStatusRepository getFeePaidStatusRepository() {
 		return feePaidStatusRepository;
 	}
 
-	public void setFeePaidStatusRepository(
-			FeePaidStatusRepository feePaidStatusRepository) {
-		this.feePaidStatusRepository = feePaidStatusRepository;
-	}
-
 	public FeeTypeRepository getFeeTypeRepository() {
 		return feeTypeRepository;
-	}
-
-	public void setFeeTypeRepository(FeeTypeRepository feeTypeRepository) {
-		this.feeTypeRepository = feeTypeRepository;
 	}
 
 	public RoleRepository getRoleRepository() {
 		return roleRepository;
 	}
 
-	public void setRoleRepository(RoleRepository roleRepository) {
-		this.roleRepository = roleRepository;
-	}
-
 	public StaffTypeRepository getStaffTypeRepository() {
 		return staffTypeRepository;
-	}
-
-	public void setStaffTypeRepository(StaffTypeRepository staffTypeRepository) {
-		this.staffTypeRepository = staffTypeRepository;
 	}
 
 	public StudentAttendanceStatusRepository getStudentAttendanceStatusRepository() {
 		return studentAttendanceStatusRepository;
 	}
 
-	public void setStudentAttendanceStatusRepository(
-			StudentAttendanceStatusRepository studentAttendanceStatusRepository) {
-		this.studentAttendanceStatusRepository = studentAttendanceStatusRepository;
-	}
-
 	public SubjectRepository getSubjectRepository() {
 		return subjectRepository;
-	}
-
-	public void setSubjectRepository(SubjectRepository subjectRepository) {
-		this.subjectRepository = subjectRepository;
 	}
 
 	public TestTypeRepository getTestTypeRepository() {
 		return testTypeRepository;
 	}
 
-	public void setTestTypeRepository(TestTypeRepository testTypeRepository) {
-		this.testTypeRepository = testTypeRepository;
+	public ParentRepository getParentRepository() {
+		return parentRepository;
 	}
 
-	public void setStudentRepository(StudentRepository studentRepository) {
-		this.studentRepository = studentRepository;
+	public StudyClassRepository getStudyClassRepository() {
+		return studyClassRepository;
 	}
 
-	public void setSchoolRepository(SchoolRepository schoolRepository) {
-		this.schoolRepository = schoolRepository;
+	public StudentRecordRepository getStudentRecordRepository() {
+		return studentRecordRepository;
 	}
+
+	public FeeRepository getFeeRepository() {
+		return feeRepository;
+	}
+	
+	
 
 }

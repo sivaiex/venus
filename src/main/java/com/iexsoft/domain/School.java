@@ -20,13 +20,13 @@ public class School implements Serializable {
 	private String id;
 	@NotNull(message = "{school.nameRequired}")
 	private String name;
-	@Field("reg-number")
+	@Field("reg_number")
 	private String regNumber;
 	@Field("established")
 	private Date establishedDate;
-	@Field("address-line1")
+	@Field("address_line1")
 	private String addressLine1;
-	@Field("address-line2")
+	@Field("address_line2")
 	private String addressLine2;
 	private String city;
 	private String state;
@@ -37,9 +37,9 @@ public class School implements Serializable {
 	
 	@Field("logo-image")
 	private byte[] logoImage;
-	@Field("first-phone")
+	@Field("first_phone")
 	private String phoneNumber1;
-	@Field("second-phone")
+	@Field("second_phone")
 	private String phoneNumber2;
 	
 
