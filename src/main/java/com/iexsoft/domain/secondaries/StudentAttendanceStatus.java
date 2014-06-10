@@ -5,13 +5,10 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "student-attendance-status")
+@Document(collection = "student_attendance_status")
 public class StudentAttendanceStatus implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4591355263399734022L;
-
+	
+	private static final long serialVersionUID = 2290245976289974771L;
 	@Id
 	private String id;
 	private String name;

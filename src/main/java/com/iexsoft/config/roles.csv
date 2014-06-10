@@ -1,0 +1,8 @@
+PRINCIPAL;PRINCIPAL Role Loaded by System
+TEACHER;TEACHER Role Loaded by System
+ACCOUNTANT;TEACHER Role Loaded by System
+SUPER_USER;SUPER_USER Role Loaded by System
+DOC_ADMIN;DOC_ADMIN Role Loaded by System
+SMS_ADMIN;SMS_ADMIN Role Loaded by System
+ACCOUNTS_ADMIN;ACCOUNTS_ADMIN Role Loaded by System
+CORRESPONDENT;CORRESPONDENT Role Loaded by System

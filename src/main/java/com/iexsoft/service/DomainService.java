@@ -1,9 +1,12 @@
 package com.iexsoft.service;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
+import com.iexsoft.config.ConfigData;
 import com.iexsoft.repositories.ClassTypeRepository;
 import com.iexsoft.repositories.FeeConcessionRepository;
 import com.iexsoft.repositories.FeePaidStatusRepository;
@@ -18,54 +21,91 @@ import com.iexsoft.repositories.TestTypeRepository;
 
 @Service
 public class DomainService {
-	
+
 	@Autowired
 	private StudentRepository studentRepository;
-	
+
 	@Autowired
 	private SchoolRepository schoolRepository;
-	
+
 	@Autowired
 	private ClassTypeRepository classTypeRepository;
-	
+
 	@Autowired
 	private FeeConcessionRepository feeConcessionRepository;
-	
+
 	@Autowired
 	private FeePaidStatusRepository feePaidStatusRepository;
-	
+
 	@Autowired
 	private FeeTypeRepository feeTypeRepository;
-	
+
 	@Autowired
 	private RoleRepository roleRepository;
-	
+
 	@Autowired
 	private StaffTypeRepository staffTypeRepository;
-	
+
 	@Autowired
 	private StudentAttendanceStatusRepository studentAttendanceStatusRepository;
-	
+
 	@Autowired
 	private SubjectRepository subjectRepository;
-	
+
 	@Autowired
 	private TestTypeRepository testTypeRepository;
-	
-	
-	
+
 	@Autowired
 	private MongoTemplate mongoTemplate;
-	
-	
+
 	/*
-	 *  all the getter methods to repositories
+	 * Any pre-loading of configuration data etc..
 	 */
-	public StudentRepository getStudentRepository(){
+	@PostConstruct
+	private void init() {
+		// Roles
+		if (roleRepository.findAll().size() == 0) {
+			roleRepository.save(ConfigData.getAllDefaultRoles());
+		}
+		//Staff Type
+		if (staffTypeRepository.findAll().size() == 0) {
+			staffTypeRepository.save(ConfigData.getAllDefaultStaffTypes());
+		}
+		//Class Type
+		if (classTypeRepository.findAll().size() == 0) {
+			classTypeRepository.save(ConfigData.getAllDefaultClassTypes());
+		}
+		//Fee Type
+		if (feeTypeRepository.findAll().size() == 0) {
+			feeTypeRepository.save(ConfigData.getAllDefaultFeeTypes());
+		}
+		//Test Type
+		if (testTypeRepository.findAll().size() == 0) {
+			testTypeRepository.save(ConfigData.getAllDefaultTestTypes());
+		}
+		//Fee Paid Status
+		if (feePaidStatusRepository.findAll().size() == 0) {
+			feePaidStatusRepository.save(ConfigData.getAllDefaultFeePaidStatus());
+		}
+		//Student Attendance Status
+		if (studentAttendanceStatusRepository.findAll().size() == 0) {
+			studentAttendanceStatusRepository.save(ConfigData.getAllDefaultStudentAttendanceStatus());
+		}
+		//Subject
+		if (subjectRepository.findAll().size() == 0) {
+			subjectRepository.save(ConfigData.getAllDefaultSubjects());
+		}
+
+	}
+
+	/*
+	 * all the getter methods to repositories
+	 */
+	public StudentRepository getStudentRepository() {
 		return studentRepository;
 	}
-	
-	public SchoolRepository getSchoolRepository(){
+
+	public SchoolRepository getSchoolRepository() {
 		return schoolRepository;
 	}
 
@@ -151,7 +191,5 @@ public class DomainService {
 	public void setSchoolRepository(SchoolRepository schoolRepository) {
 		this.schoolRepository = schoolRepository;
 	}
-	
-	
 
 }

@@ -7,11 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "role")
 public class Role implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4591355263399734022L;
-
+	
+	private static final long serialVersionUID = 5112836041721053358L;
 	@Id
 	private String id;
 	private String name;

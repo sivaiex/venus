@@ -5,13 +5,12 @@ import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "fee-type")
+@Document(collection = "class_type")
 public class ClassType implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4591355263399734022L;
-
+	
+	private static final long serialVersionUID = -854097649784332090L;
+	
+	
 	@Id
 	private String id;
 	private String name;

@@ -6,13 +6,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "staff-type")
+@Document(collection = "fee_concession")
 public class FeeConcession implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 4591355263399734022L;
-
+	
+	private static final long serialVersionUID = 774728290821248715L;
 	@Id
 	private String id;
 	@Field("fee-type")
