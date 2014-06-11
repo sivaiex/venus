@@ -11,9 +11,11 @@ import org.wicketstuff.annotation.mount.MountPath;
 
 import com.iexsoft.domain.Parent;
 import com.iexsoft.domain.School;
+import com.iexsoft.domain.Staff;
 import com.iexsoft.domain.Student;
 import com.iexsoft.parent.ParentListPage;
 import com.iexsoft.school.SchoolPage;
+import com.iexsoft.staff.StaffListPage;
 import com.iexsoft.student.StudentListPage;
 
 @MountPath(value = "dashboard")
@@ -31,6 +33,7 @@ public class HomePage extends WebPage {
 		add(getSchoolLink());
 		add(getStudentListLink());
 		add(getParentListLink());
+		add(getStaffListLink());
 		add(new Label("footer", "@copy right, iexsoft LLC, 2014"));
 		
 		
@@ -83,6 +86,23 @@ public class HomePage extends WebPage {
 			@Override
     		public void onClick() {
     			setResponsePage(ParentListPage.class);
+    			
+    		}
+		};
+		return link;
+    }
+    
+    private Link<Staff> getStaffListLink(){
+    	Link<Staff> link = new Link<Staff>("staffList") {
+    		
+    		/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+    		public void onClick() {
+    			setResponsePage(StaffListPage.class);
     			
     		}
 		};
