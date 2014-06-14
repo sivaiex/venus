@@ -25,7 +25,7 @@ public class StaffListPage extends WebPage {
 	private static Logger log = LoggerFactory.getLogger(StaffListPage.class);
 
 	@SpringBean
-	DomainService domainService;
+	DomainService domainService;b
 
 	public StaffListPage(final PageParameters parameters) {
 		super(parameters);
