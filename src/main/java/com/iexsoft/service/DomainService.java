@@ -22,6 +22,7 @@ import com.iexsoft.repositories.FeeTypeRepository;
 import com.iexsoft.repositories.ParentRepository;
 import com.iexsoft.repositories.RoleRepository;
 import com.iexsoft.repositories.SchoolRepository;
+import com.iexsoft.repositories.StaffRepository;
 import com.iexsoft.repositories.StaffTypeRepository;
 import com.iexsoft.repositories.StudentAccountRepository;
 import com.iexsoft.repositories.StudentAttendanceStatusRepository;
@@ -72,6 +73,10 @@ public class DomainService {
 
 	@Autowired
 	private ParentRepository parentRepository;
+	
+	
+	@Autowired
+	private StaffRepository staffRepository;
 
 	@Autowired
 	private StudyClassRepository studyClassRepository;
@@ -170,6 +175,9 @@ public class DomainService {
 		repoMap.put(SubjectRepository.class.getName(), subjectRepository);
 		repoMap.put(TestTypeRepository.class.getName(), testTypeRepository);
 		repoMap.put(ParentRepository.class.getName(), parentRepository);
+		
+		repoMap.put(StaffRepository.class.getName(), staffRepository);
+		
 		repoMap.put(StudyClassRepository.class.getName(), studyClassRepository);
 		repoMap.put(StudentRecordRepository.class.getName(),
 				studentRecordRepository);

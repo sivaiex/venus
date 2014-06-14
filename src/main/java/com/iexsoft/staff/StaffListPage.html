@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8" />
+<title></title>
+</head>
+<body>
+
+	<div id="staffList">
+	Staff List <br/>
+		<table>
+            <tr>
+                <th>ID</th>
+                <th>firstName</th>
+                <th>lastName</th>
+            </tr>
+            <tr wicket:id="rows">
+                <td><span wicket:id="id">ID</span></td>
+                <td><span wicket:id="firstName">First Name</span></td>
+                <td><span wicket:id="lastName">Last Name</span></td>
+            </tr>
+        </table>
+        
+        <a href="#" wicket:id="createStaff">Create Staff</a><br/>
+	</div>
+</body>
+</html>
