@@ -3,8 +3,6 @@ package com.iexsoft.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -16,7 +14,6 @@ public class School implements Serializable {
 	 */
 	private static final long serialVersionUID = -4065197733627571051L;
 
-	@NotNull(message = "{school.nameRequired}")
 	private String name;
 	@Field("reg_number")
 	private String regNumber;
@@ -30,7 +27,6 @@ public class School implements Serializable {
 	private String state;
 
 	@Field("postal-code")
-	@Pattern(regexp = "\\d+", message = "{address.invalidPostalCode}")
 	private String postalCode;
 
 	@Field("logo-image")
@@ -39,8 +35,6 @@ public class School implements Serializable {
 	private String phoneNumber1;
 	@Field("second_phone")
 	private String phoneNumber2;
-
-	@Pattern(regexp = "^[_A-Za-z0-9-]+(.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(.[A-Za-z0-9-]+)*((.[A-Za-z]{2,}){1}$)", message = "{school.invalidEmail}")
 	private String email;
 	private String correspondant;
 

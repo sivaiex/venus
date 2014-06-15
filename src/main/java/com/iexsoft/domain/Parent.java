@@ -2,8 +2,6 @@ package com.iexsoft.domain;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -15,10 +13,8 @@ public class Parent extends Domain implements Serializable {
 	 */
 	private static final long serialVersionUID = -4093982725442212490L;
 
-	@NotNull
 	@Field("first_name")
 	private String firstName;
-	@NotNull
 	@Field("last_name")
 	private String lastName;
 
@@ -33,10 +29,8 @@ public class Parent extends Domain implements Serializable {
 	private String state;
 
 	@Field("postal_code")
-	@Pattern(regexp = "\\d+", message = "{address.invalidPostalCode}")
 	private String postalCode;
 
-	@Pattern(regexp = "^[_A-Za-z0-9-]+(.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(.[A-Za-z0-9-]+)*((.[A-Za-z]{2,}){1}$)", message = "{school.invalidEmail}")
 	private String email;
 
 	@Field("sms")
