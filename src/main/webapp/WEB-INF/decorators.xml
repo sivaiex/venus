@@ -6,7 +6,7 @@
         <pattern>/about.jsp</pattern>
     </excludes>
 	
-	<decorator name="main-layout" page="main-layout.jsp">
-        <pattern>/*</pattern>     
+	<decorator name="home-layout" page="home-layout.jsp">
+        <pattern>/</pattern>     
     </decorator>	
 </decorators>

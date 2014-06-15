@@ -52,15 +52,7 @@
           <a class="navbar-brand" href="#">Venus</a>
         </div>
         <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
-            <div class="form-group">
-              <input type="text" placeholder="Login" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+          <c:import url="/WEB-INF/views/home.jsp"/>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
