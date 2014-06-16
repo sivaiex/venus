@@ -14,6 +14,7 @@
 		<org.springframework-version>3.2.5.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.1</org.slf4j-version>
+		<tiles.version>3.0.1</tiles.version>
 	</properties>
 	<dependencies>
 	<!-- Mongo DB driver -->
@@ -112,11 +113,10 @@
 			<version>1.2</version>
 		</dependency>
 
-		<!-- Sitemesh -->
 		<dependency>
-			<groupId>opensymphony</groupId>
-			<artifactId>sitemesh</artifactId>
-			<version>2.4.2</version>
+				<groupId>org.apache.tiles</groupId>
+				<artifactId>tiles-jsp</artifactId>
+				<version>${tiles.version}</version>
 		</dependency>
 
 		<!-- Jackson JSON Processor -->

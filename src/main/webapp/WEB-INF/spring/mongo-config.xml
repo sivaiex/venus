@@ -30,9 +30,6 @@
 	
 	<mongo:repositories base-package="com.iexsoft.repositories"/>
     
-    <!--  replica set -->
-    <mongo:mongo replica-set="localhost:27017"/>
-
 	<context:annotation-config />
 	
 </beans>
