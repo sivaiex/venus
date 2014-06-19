@@ -13,6 +13,8 @@ public class Student extends Domain implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4093982725442212490L;
+	@Field("admission_number")
+	private String admissionNumber;
 	@Field("first_name")
 	private String firstName;
 	@Field("last_name")
