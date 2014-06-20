@@ -3,6 +3,8 @@ package com.iexsoft.controller.student;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -220,7 +222,7 @@ public class StudentController {
 
 	@RequestMapping(value = "/student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Student saveStudent(@Validated @RequestBody Student student) {
+	public Student saveStudent(@Valid @RequestBody Student student) {
 		return domainService.getRepository(StudentRepository.class).save(student);
 
 	}

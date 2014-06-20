@@ -2,6 +2,8 @@ package com.iexsoft.domain;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -10,7 +12,8 @@ public class Student extends Domain {
 
 	@Field("admission_number")
 	private String admissionNumber;
-
+	
+    @NotNull
 	@Field("first_name")
 	private String firstName;
 

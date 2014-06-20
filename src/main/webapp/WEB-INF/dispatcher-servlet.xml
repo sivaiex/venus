@@ -13,15 +13,28 @@
 	<context:component-scan base-package="com.iexsoft.controller" />
 
 	<mvc:resources mapping="/**" location="/" />
+	<mvc:annotation-driven />
 	
-	<mvc:annotation-driven>
-	  <mvc:message-converters>
-	        <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
-	           
-	   </mvc:message-converters>
-    </mvc:annotation-driven>
+	
+    
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <!-- Configure to plugin JSON as request and response in method handler -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+     <!-- Configure bean to convert JSON to POJO and vice versa -->
+    <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
     
     
+    <!-- 
     
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 	  <property name="mediaTypes">
@@ -46,7 +59,7 @@
 	    </list>
 	  </property>
 	</bean>
-
+-->
 
 
 </beans>
