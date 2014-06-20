@@ -15,5 +15,6 @@ public interface StudentRepository extends MongoRepository<Student, String>{
 	List<Student> findByadmissionNumber(String admissionNumber);
 	List<Student> findByFather(String father);
 	List<Student> findByMother(String mother);
+	List<Student> findByClassId(String classId);
 	
 }

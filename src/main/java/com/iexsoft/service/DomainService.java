@@ -1,6 +1,7 @@
 package com.iexsoft.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 
 import com.iexsoft.config.ConfigData;
+import com.iexsoft.domain.Parent;
+import com.iexsoft.domain.Student;
 import com.iexsoft.repositories.ClassTimeTableRepository;
 import com.iexsoft.repositories.ClassTypeRepository;
 import com.iexsoft.repositories.FeeConcessionRepository;
@@ -73,8 +76,7 @@ public class DomainService {
 
 	@Autowired
 	private ParentRepository parentRepository;
-	
-	
+
 	@Autowired
 	private StaffRepository staffRepository;
 
@@ -92,10 +94,10 @@ public class DomainService {
 
 	@Autowired
 	private StudentAccountRepository studentAccountRepository;
-	
+
 	@Autowired
 	private StudentMarksRepository studentMarksRepository;
-	
+
 	@Autowired
 	private StudentPromotionRepository studentPromotionRepository;
 
@@ -140,14 +142,12 @@ public class DomainService {
 		// Fee Paid Status
 		if (feePaidStatusRepository.findAll().size() == 0) {
 			log.debug("Loading Default Fee Paid Statuses ....");
-			feePaidStatusRepository.save(ConfigData
-					.getAllDefaultFeePaidStatus());
+			feePaidStatusRepository.save(ConfigData.getAllDefaultFeePaidStatus());
 		}
 		// Student Attendance Status
 		if (studentAttendanceStatusRepository.findAll().size() == 0) {
 			log.debug("Loading Default Attendance Status ....");
-			studentAttendanceStatusRepository.save(ConfigData
-					.getAllDefaultStudentAttendanceStatus());
+			studentAttendanceStatusRepository.save(ConfigData.getAllDefaultStudentAttendanceStatus());
 		}
 		// Subject
 		if (subjectRepository.findAll().size() == 0) {
@@ -163,27 +163,22 @@ public class DomainService {
 		repoMap.put(StudentRepository.class.getName(), studentRepository);
 		repoMap.put(SchoolRepository.class.getName(), schoolRepository);
 		repoMap.put(ClassTypeRepository.class.getName(), classTypeRepository);
-		repoMap.put(FeeConcessionRepository.class.getName(),
-				feeConcessionRepository);
-		repoMap.put(FeePaidStatusRepository.class.getName(),
-				feePaidStatusRepository);
+		repoMap.put(FeeConcessionRepository.class.getName(), feeConcessionRepository);
+		repoMap.put(FeePaidStatusRepository.class.getName(), feePaidStatusRepository);
 		repoMap.put(FeeTypeRepository.class.getName(), feeTypeRepository);
 		repoMap.put(RoleRepository.class.getName(), roleRepository);
 		repoMap.put(StaffTypeRepository.class.getName(), staffTypeRepository);
-		repoMap.put(StudentAttendanceStatusRepository.class.getName(),
-				studentAttendanceStatusRepository);
+		repoMap.put(StudentAttendanceStatusRepository.class.getName(), studentAttendanceStatusRepository);
 		repoMap.put(SubjectRepository.class.getName(), subjectRepository);
 		repoMap.put(TestTypeRepository.class.getName(), testTypeRepository);
 		repoMap.put(ParentRepository.class.getName(), parentRepository);
-		
+
 		repoMap.put(StaffRepository.class.getName(), staffRepository);
-		
+
 		repoMap.put(StudyClassRepository.class.getName(), studyClassRepository);
-		repoMap.put(StudentRecordRepository.class.getName(),
-				studentRecordRepository);
+		repoMap.put(StudentRecordRepository.class.getName(), studentRecordRepository);
 		repoMap.put(FeeRepository.class.getName(), feeRepository);
-		repoMap.put(StudentAccountRepository.class.getName(),
-				studentAccountRepository);
+		repoMap.put(StudentAccountRepository.class.getName(), studentAccountRepository);
 		repoMap.put(ClassTimeTableRepository.class.getName(), classTimeTableRepository);
 		repoMap.put(StudentMarksRepository.class.getName(), studentMarksRepository);
 		repoMap.put(StudentPromotionRepository.class.getName(), studentPromotionRepository);
@@ -193,5 +188,39 @@ public class DomainService {
 	public <T> T getRepository(final Class<T> type) {
 		return type.cast(repoMap.get(type.getName()));
 	}
-
+	
+	/*
+	 *  All Mongo complex Query APIS
+	 * 
+	 */
+    
+	public List<Student> searchStudentsByLastName(String lastname){
+		//mongoTemplate.find(new Query(""), Student.class)
+		return null;
+		
+	}
+	
+	public List<Student> searchStudentsByFirstName(String firstname){
+		//mongoTemplate.find(new Query(""), Student.class)
+		return null;
+		
+	}
+	
+	public List<Student> searchStudentsBirthDate(int month, int date){
+		//mongoTemplate.find(new Query(""), Student.class)
+		return null;
+		
+	}
+	
+	public List<Parent> searchParentsByLastName(String lastname){
+		//mongoTemplate.find(new Query(""), Student.class)
+		return null;
+		
+	}
+	
+	public List<Parent> searchParentsByFirstName(String firstname){
+		//mongoTemplate.find(new Query(""), Student.class)
+		return null;
+		
+	}
 }
