@@ -3,6 +3,7 @@ package com.iexsoft.domain;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -14,6 +15,7 @@ public class Student extends Domain {
 	private String admissionNumber;
 	
     @NotNull
+    @Pattern(regexp=".+@.+\\.[a-z]+", message="error.validation.firstName.missing")
 	@Field("first_name")
 	private String firstName;
 

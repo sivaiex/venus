@@ -10,7 +10,12 @@
 	<context:component-scan base-package="com.iexsoft.service" />
 	<context:component-scan base-package="com.iexsoft.controller" />
 	
-    <context:property-placeholder  location="/WEB-INF/spring/venus.properties" ignore-unresolvable="true" />
+    <context:property-placeholder  location="classpath:/conf/venus.properties" ignore-unresolvable="true" />
+    <context:property-placeholder  location="classpath:/conf/messages.properties" ignore-unresolvable="true" />
    
-	
+   
+	<bean class="org.springframework.context.support.ResourceBundleMessageSource"
+		id="messageSource">
+		<property name="basename" value="messages" />
+	</bean>
 </beans>

@@ -5,9 +5,14 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,9 +22,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iexsoft.domain.Student;
 import com.iexsoft.domain.StudentAccountActivity;
-import com.iexsoft.domain.StudentNotes;
 import com.iexsoft.domain.StudentAttendance;
 import com.iexsoft.domain.StudentMarks;
+import com.iexsoft.domain.StudentNotes;
 import com.iexsoft.domain.StudentPromotion;
 import com.iexsoft.domain.StudentRecord;
 import com.iexsoft.repositories.StudentAccountRepository;
@@ -34,6 +39,9 @@ import com.iexsoft.service.DomainService;
 @Controller
 public class StudentController {
 
+	private static final Logger LOG = LoggerFactory.getLogger(StudentController.class);
+
+	
 	@Autowired
 	DomainService domainService;
 
@@ -222,7 +230,26 @@ public class StudentController {
 
 	@RequestMapping(value = "/student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Student saveStudent(@Valid @RequestBody Student student) {
+	public Student saveStudent(@Valid @RequestBody Student student,BindingResult br) {
+	
+		List<FieldError> lister =  br.getFieldErrors();
+		for(FieldError fr:lister){
+			
+			LOG.error("error code1:"+fr.getCode());
+			LOG.error("error message1:"+fr.getDefaultMessage());
+			LOG.error("error message1:"+fr.getArguments());
+			
+		}
+		
+		List<ObjectError> listeer =  br.getAllErrors();
+		for(ObjectError fr:listeer){
+			
+			LOG.error("error code2:"+fr.getCode());
+			LOG.error("error message2:"+fr.getDefaultMessage());
+			LOG.error("error message2:"+fr.getArguments());
+			
+		}
+		//LOG.error("error mesage {}",br);
 		return domainService.getRepository(StudentRepository.class).save(student);
 
 	}
