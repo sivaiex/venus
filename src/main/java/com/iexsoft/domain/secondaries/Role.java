@@ -1,15 +1,11 @@
 package com.iexsoft.domain.secondaries;
 
-import java.io.Serializable;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.iexsoft.domain.Domain;
 
 @Document(collection = "role")
-public class Role extends Domain implements Serializable {
-
-	private static final long serialVersionUID = 5112836041721053358L;
+public class Role extends Domain {
 
 	private String name;
 	private String description;

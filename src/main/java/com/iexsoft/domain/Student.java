@@ -1,26 +1,25 @@
 package com.iexsoft.domain;
 
-import java.io.Serializable;
 import java.util.Date;
-
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "student")
-public class Student extends Domain implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4093982725442212490L;
+public class Student extends Domain {
+
 	@Field("admission_number")
 	private String admissionNumber;
+
 	@Field("first_name")
 	private String firstName;
+
 	@Field("last_name")
 	private String lastName;
+
 	@Field("dob")
 	private Date dateOfBirth;
+
 	@Field("dfa")
 	private Date dateOfFirstAdmission;
 	@Field("dsa")
@@ -30,6 +29,7 @@ public class Student extends Domain implements Serializable {
 	@Field("dsr")
 	private Date dateOfSecondRelieving;
 	private String father;
+
 	private String mother;
 	@Field("class_id")
 	private String classId;
@@ -37,6 +37,8 @@ public class Student extends Domain implements Serializable {
 	private String concessionId;
 	@Field("access")
 	private boolean hasAccess;
+	
+	private String photo;
 
 	public String getFirstName() {
 		return firstName;
@@ -118,6 +120,22 @@ public class Student extends Domain implements Serializable {
 		this.classId = classId;
 	}
 
+	public String getAdmissionNumber() {
+		return admissionNumber;
+	}
+
+	public void setAdmissionNumber(String admissionNumber) {
+		this.admissionNumber = admissionNumber;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	public String getConcessionId() {
 		return concessionId;
 	}
@@ -133,5 +151,7 @@ public class Student extends Domain implements Serializable {
 	public void setHasAccess(boolean hasAccess) {
 		this.hasAccess = hasAccess;
 	}
+	
+	
 
 }

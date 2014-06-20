@@ -23,6 +23,8 @@ import com.iexsoft.repositories.FeePaidStatusRepository;
 import com.iexsoft.repositories.FeeRepository;
 import com.iexsoft.repositories.FeeTypeRepository;
 import com.iexsoft.repositories.ParentRepository;
+import com.iexsoft.repositories.PhotoRepository;
+import com.iexsoft.repositories.PhotoTypeRepository;
 import com.iexsoft.repositories.RoleRepository;
 import com.iexsoft.repositories.SchoolRepository;
 import com.iexsoft.repositories.StaffRepository;
@@ -102,6 +104,12 @@ public class DomainService {
 	private StudentPromotionRepository studentPromotionRepository;
 
 	@Autowired
+	private PhotoRepository photoRepository;
+	
+	@Autowired
+	private PhotoTypeRepository photoTypeRepository;
+
+	@Autowired
 	private MongoTemplate mongoTemplate;
 
 	@SuppressWarnings("rawtypes")
@@ -155,6 +163,12 @@ public class DomainService {
 			subjectRepository.save(ConfigData.getAllDefaultSubjects());
 		}
 
+		// Photo
+		if (photoTypeRepository.findAll().size() == 0) {
+			log.debug("Loading Default PhotoTypes ....");
+			photoTypeRepository.save(ConfigData.getAllDefaultPhotoTypes());
+		}
+
 		// Adding all repos to Map, so that we can easily retrieve the required
 		// repository
 		log.debug("adding all repos to repoMap....");
@@ -182,45 +196,46 @@ public class DomainService {
 		repoMap.put(ClassTimeTableRepository.class.getName(), classTimeTableRepository);
 		repoMap.put(StudentMarksRepository.class.getName(), studentMarksRepository);
 		repoMap.put(StudentPromotionRepository.class.getName(), studentPromotionRepository);
+		repoMap.put(PhotoRepository.class.getName(), photoRepository);
+		repoMap.put(PhotoTypeRepository.class.getName(), photoTypeRepository);
 
 	}
 
 	public <T> T getRepository(final Class<T> type) {
 		return type.cast(repoMap.get(type.getName()));
 	}
-	
+
 	/*
-	 *  All Mongo complex Query APIS
-	 * 
+	 * All Mongo complex Query APIS
 	 */
-    
-	public List<Student> searchStudentsByLastName(String lastname){
-		//mongoTemplate.find(new Query(""), Student.class)
+
+	public List<Student> searchStudentsByLastName(String lastname) {
+		// mongoTemplate.find(new Query(""), Student.class)
 		return null;
-		
+
 	}
-	
-	public List<Student> searchStudentsByFirstName(String firstname){
-		//mongoTemplate.find(new Query(""), Student.class)
+
+	public List<Student> searchStudentsByFirstName(String firstname) {
+		// mongoTemplate.find(new Query(""), Student.class)
 		return null;
-		
+
 	}
-	
-	public List<Student> searchStudentsBirthDate(int month, int date){
-		//mongoTemplate.find(new Query(""), Student.class)
+
+	public List<Student> searchStudentsBirthDate(int month, int date) {
+		// mongoTemplate.find(new Query(""), Student.class)
 		return null;
-		
+
 	}
-	
-	public List<Parent> searchParentsByLastName(String lastname){
-		//mongoTemplate.find(new Query(""), Student.class)
+
+	public List<Parent> searchParentsByLastName(String lastname) {
+		// mongoTemplate.find(new Query(""), Student.class)
 		return null;
-		
+
 	}
-	
-	public List<Parent> searchParentsByFirstName(String firstname){
-		//mongoTemplate.find(new Query(""), Student.class)
+
+	public List<Parent> searchParentsByFirstName(String firstname) {
+		// mongoTemplate.find(new Query(""), Student.class)
 		return null;
-		
+
 	}
 }

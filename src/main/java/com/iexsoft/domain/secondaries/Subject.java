@@ -1,15 +1,11 @@
 package com.iexsoft.domain.secondaries;
 
-import java.io.Serializable;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.iexsoft.domain.Domain;
 
 @Document(collection = "subject")
-public class Subject extends Domain implements Serializable {
-
-	private static final long serialVersionUID = -3570975884591207351L;
+public class Subject extends Domain {
 
 	private String name;
 	private String description;

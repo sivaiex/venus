@@ -4,15 +4,18 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.iexsoft.domain.Student;
-import com.iexsoft.domain.StudentAccount;
-import com.iexsoft.domain.StudentActivity;
+import com.iexsoft.domain.StudentAccountActivity;
+import com.iexsoft.domain.StudentNotes;
 import com.iexsoft.domain.StudentAttendance;
 import com.iexsoft.domain.StudentMarks;
 import com.iexsoft.domain.StudentPromotion;
@@ -142,27 +145,27 @@ public class StudentController {
 		return domainService.getRepository(StudentRepository.class).findByClassId(classId);
 
 	}
-	
+
 	/*
 	 * Get Student Account
 	 */
 	@RequestMapping(value = "/studentaccount/id/{studentid}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<StudentAccount> getStudentAccountByStudentId(@PathVariable("studentid") String studentid) {
+	public List<StudentAccountActivity> getStudentAccountByStudentId(@PathVariable("studentid") String studentid) {
 		return domainService.getRepository(StudentAccountRepository.class).findByStudent(studentid);
 
 	}
-	
+
 	/*
 	 * Get Student Activity
 	 */
 	@RequestMapping(value = "/studentactivity/id/{studentid}", method = RequestMethod.GET)
 	@ResponseBody
-	public List<StudentActivity> getStudentActivityByStudentId(@PathVariable("studentid") String studentid) {
+	public List<StudentNotes> getStudentActivityByStudentId(@PathVariable("studentid") String studentid) {
 		return domainService.getRepository(StudentActivitytRepository.class).findByStudent(studentid);
 
 	}
-	
+
 	/*
 	 * Get Student Attendance
 	 */
@@ -172,7 +175,7 @@ public class StudentController {
 		return domainService.getRepository(StudentAttendanceRepository.class).findByStudent(studentid);
 
 	}
-	
+
 	/*
 	 * Get Student Marks
 	 */
@@ -182,7 +185,7 @@ public class StudentController {
 		return domainService.getRepository(StudentMarksRepository.class).findByStudent(studentid);
 
 	}
-	
+
 	/*
 	 * Get Student Promotion
 	 */
@@ -192,7 +195,7 @@ public class StudentController {
 		return domainService.getRepository(StudentPromotionRepository.class).findByStudent(studentid);
 
 	}
-	
+
 	/*
 	 * Get Student Record
 	 */
@@ -202,15 +205,53 @@ public class StudentController {
 		return domainService.getRepository(StudentRecordRepository.class).findByStudent(studentid);
 
 	}
-	
-	
-	/*
-	 * Save Student Record
+
+	/***
+	 * All the save methods
+	 * 
 	 */
-	@RequestMapping(value = "/student", method = RequestMethod.POST)
+
+	/***
+	 * POST Method to create a Student
+	 * 
+	 * @param student
+	 * @return
+	 */
+
+	@RequestMapping(value = "/student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Student saveStudent(Student student) {
+	public Student saveStudent(@Validated @RequestBody Student student) {
 		return domainService.getRepository(StudentRepository.class).save(student);
+
+	}
+
+	/*
+	 * Save Student Attendance
+	 */
+	@RequestMapping(value = "/student/attendance", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public StudentAttendance saveStudentAttendance(@Validated @RequestBody StudentAttendance studentattendance) {
+		return domainService.getRepository(StudentAttendanceRepository.class).save(studentattendance);
+
+	}
+
+	/*
+	 * Save Student Marks
+	 */
+	@RequestMapping(value = "/student/marks", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public StudentMarks saveStudentMarks(@Validated @RequestBody StudentMarks studentMarks) {
+		return domainService.getRepository(StudentMarksRepository.class).save(studentMarks);
+
+	}
+
+	/*
+	 * Save Student Promotion
+	 */
+	@RequestMapping(value = "/student/promotion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public StudentPromotion saveStudentPromotion(@Validated @RequestBody StudentPromotion studentPromotion) {
+		return domainService.getRepository(StudentPromotionRepository.class).save(studentPromotion);
 
 	}
 

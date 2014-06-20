@@ -1,16 +1,12 @@
 package com.iexsoft.domain.secondaries;
 
-import java.io.Serializable;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.iexsoft.domain.Domain;
 
 @Document(collection = "fee_concession")
-public class FeeConcession extends Domain implements Serializable {
-
-	private static final long serialVersionUID = 774728290821248715L;
+public class FeeConcession extends Domain {
 
 	@Field("fee-type")
 	private String feeType;

@@ -8,6 +8,7 @@ import java.util.Scanner;
 import com.iexsoft.domain.secondaries.ClassType;
 import com.iexsoft.domain.secondaries.FeePaidStatus;
 import com.iexsoft.domain.secondaries.FeeType;
+import com.iexsoft.domain.secondaries.PhotoType;
 import com.iexsoft.domain.secondaries.Role;
 import com.iexsoft.domain.secondaries.StaffType;
 import com.iexsoft.domain.secondaries.StudentAttendanceStatus;
@@ -20,8 +21,7 @@ public class ConfigData {
 
 		List<Role> roles = new ArrayList<Role>();
 		try {
-			InputStream rolesStream = ConfigData.class
-					.getResourceAsStream("roles.csv");
+			InputStream rolesStream = ConfigData.class.getResourceAsStream("roles.csv");
 			Scanner scanner = new Scanner(rolesStream);
 
 			while (scanner.hasNext()) {
@@ -38,19 +38,18 @@ public class ConfigData {
 			} catch (Exception e) {
 			}
 		} catch (Exception e) {
-			
+
 		}
 
 		return roles;
 
 	}
-	
+
 	public static List<StaffType> getAllDefaultStaffTypes() {
 
 		List<StaffType> stafftypes = new ArrayList<StaffType>();
 		try {
-			InputStream staffTypesStream = ConfigData.class
-					.getResourceAsStream("staff_types.csv");
+			InputStream staffTypesStream = ConfigData.class.getResourceAsStream("staff_types.csv");
 			Scanner scanner = new Scanner(staffTypesStream);
 			while (scanner.hasNext()) {
 				String curLine = scanner.nextLine();
@@ -65,18 +64,17 @@ public class ConfigData {
 			} catch (Exception e) {
 			}
 		} catch (Exception e) {
-			
+
 		}
 		return stafftypes;
 
 	}
-	
+
 	public static List<ClassType> getAllDefaultClassTypes() {
 
 		List<ClassType> classtypes = new ArrayList<ClassType>();
 		try {
-			InputStream classTypesStream = ConfigData.class
-					.getResourceAsStream("class_types.csv");
+			InputStream classTypesStream = ConfigData.class.getResourceAsStream("class_types.csv");
 			Scanner scanner = new Scanner(classTypesStream);
 
 			while (scanner.hasNext()) {
@@ -93,19 +91,18 @@ public class ConfigData {
 			} catch (Exception e) {
 			}
 		} catch (Exception e) {
-			
+
 		}
 
 		return classtypes;
 
 	}
-	
+
 	public static List<FeeType> getAllDefaultFeeTypes() {
 
 		List<FeeType> feetypes = new ArrayList<FeeType>();
 		try {
-			InputStream feeTypesStream = ConfigData.class
-					.getResourceAsStream("fee_types.csv");
+			InputStream feeTypesStream = ConfigData.class.getResourceAsStream("fee_types.csv");
 			Scanner scanner = new Scanner(feeTypesStream);
 
 			while (scanner.hasNext()) {
@@ -122,21 +119,19 @@ public class ConfigData {
 			} catch (Exception e) {
 			}
 		} catch (Exception e) {
-			
+
 		}
 
 		return feetypes;
 
 	}
-	
+
 	public static List<TestType> getAllDefaultTestTypes() {
 
-		
 		List<TestType> testtypes = new ArrayList<TestType>();
 		try {
 			try {
-				InputStream testTypesStream = ConfigData.class
-						.getResourceAsStream("test_types.csv");
+				InputStream testTypesStream = ConfigData.class.getResourceAsStream("test_types.csv");
 				Scanner scanner = new Scanner(testTypesStream);
 
 				while (scanner.hasNext()) {
@@ -153,23 +148,21 @@ public class ConfigData {
 				} catch (Exception e) {
 				}
 
-				
-			} catch (Exception e) {}
+			} catch (Exception e) {
+			}
 		} catch (Exception e) {
-			
+
 		}
-			
-		
+
 		return testtypes;
 
 	}
-	
+
 	public static List<FeePaidStatus> getAllDefaultFeePaidStatus() {
 
 		List<FeePaidStatus> feepaidStatuses = new ArrayList<FeePaidStatus>();
 		try {
-			InputStream feePaidStatusStream = ConfigData.class
-					.getResourceAsStream("fee_paid_status.csv");
+			InputStream feePaidStatusStream = ConfigData.class.getResourceAsStream("fee_paid_status.csv");
 			Scanner scanner = new Scanner(feePaidStatusStream);
 
 			while (scanner.hasNext()) {
@@ -185,19 +178,18 @@ public class ConfigData {
 				scanner.close();
 			} catch (Exception e) {
 			}
-		} catch (Exception e) {}
-			
+		} catch (Exception e) {
+		}
 
 		return feepaidStatuses;
 
 	}
-	
+
 	public static List<StudentAttendanceStatus> getAllDefaultStudentAttendanceStatus() {
 
 		List<StudentAttendanceStatus> studentAttendanceStatuses = new ArrayList<StudentAttendanceStatus>();
 		try {
-			InputStream studentAttendanceStatusesStream = ConfigData.class
-					.getResourceAsStream("student_attendance_status.csv");
+			InputStream studentAttendanceStatusesStream = ConfigData.class.getResourceAsStream("student_attendance_status.csv");
 			Scanner scanner = new Scanner(studentAttendanceStatusesStream);
 
 			while (scanner.hasNext()) {
@@ -213,19 +205,18 @@ public class ConfigData {
 				scanner.close();
 			} catch (Exception e) {
 			}
-		} catch (Exception e) {}
-			
+		} catch (Exception e) {
+		}
 
 		return studentAttendanceStatuses;
 
 	}
-	
+
 	public static List<Subject> getAllDefaultSubjects() {
 
 		List<Subject> subjects = new ArrayList<Subject>();
 		try {
-			InputStream subjectsStream = ConfigData.class
-					.getResourceAsStream("subjects.csv");
+			InputStream subjectsStream = ConfigData.class.getResourceAsStream("subjects.csv");
 			Scanner scanner = new Scanner(subjectsStream);
 
 			while (scanner.hasNext()) {
@@ -241,36 +232,59 @@ public class ConfigData {
 				scanner.close();
 			} catch (Exception e) {
 			}
-		} catch (Exception e) {}
-		
+		} catch (Exception e) {
+		}
 
 		return subjects;
 
 	}
-	
-	/*public static List<FeeConcession> getAllDefaultFeeConcession() {
 
-		List<FeeConcession> feeConcessions = new ArrayList<FeeConcession>();
-		InputStream feeConcessionStream = ConfigData.class
-				.getResourceAsStream("fee-concession.csv");
-		Scanner scanner = new Scanner(feeConcessionStream);
+	public static List<PhotoType> getAllDefaultPhotoTypes() {
 
-		while (scanner.hasNext()) {
-			String curLine = scanner.nextLine();
-			String[] feePaidStatusData = curLine.split(";");
-			FeeConcession feeConcession = new FeeConcession();
-			feeConcession.setName(feePaidStatusData[0]);
-			feeConcession.setDescription(feePaidStatusData[1]);
-			feepaidStatuses.add(feeConcession);
-		}
-
+		List<PhotoType> photoTypes = new ArrayList<PhotoType>();
 		try {
-			scanner.close();
+			InputStream subjectsStream = ConfigData.class.getResourceAsStream("phototypes.csv");
+			Scanner scanner = new Scanner(subjectsStream);
+
+			while (scanner.hasNext()) {
+				String curLine = scanner.nextLine();
+				String[] photoTypeData = curLine.split(";");
+				PhotoType photoType = new PhotoType();
+				photoType.setType(photoTypeData[0]);
+				photoType.setDescription(photoTypeData[1]);
+				photoTypes.add(photoType);
+			}
+
+			try {
+				scanner.close();
+			} catch (Exception e) {
+			}
 		} catch (Exception e) {
 		}
 
-		return feepaidStatuses;
+		return photoTypes;
 
-	}*/
+	}
+
+	/*
+	 * public static List<FeeConcession> getAllDefaultFeeConcession() {
+	 * 
+	 * List<FeeConcession> feeConcessions = new ArrayList<FeeConcession>();
+	 * InputStream feeConcessionStream = ConfigData.class
+	 * .getResourceAsStream("fee-concession.csv"); Scanner scanner = new
+	 * Scanner(feeConcessionStream);
+	 * 
+	 * while (scanner.hasNext()) { String curLine = scanner.nextLine(); String[]
+	 * feePaidStatusData = curLine.split(";"); FeeConcession feeConcession = new
+	 * FeeConcession(); feeConcession.setName(feePaidStatusData[0]);
+	 * feeConcession.setDescription(feePaidStatusData[1]);
+	 * feepaidStatuses.add(feeConcession); }
+	 * 
+	 * try { scanner.close(); } catch (Exception e) { }
+	 * 
+	 * return feepaidStatuses;
+	 * 
+	 * }
+	 */
 
 }

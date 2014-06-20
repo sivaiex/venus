@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.iexsoft.domain.StudentAccount;
+import com.iexsoft.domain.StudentAccountActivity;
+
 @Repository
-public interface StudentAccountRepository extends MongoRepository<StudentAccount, String> {
-	public List<StudentAccount> findByStudent(String student);
+public interface StudentAccountRepository extends MongoRepository<StudentAccountActivity, String> {
+	public List<StudentAccountActivity> findByStudent(String student);
 
 }

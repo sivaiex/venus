@@ -1,15 +1,13 @@
 package com.iexsoft.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.Field;
 
-public class Score implements Serializable {
+public class Score {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3214888122580190469L;
 	private String subject;
 	@Field("markes_secured")
 	private int marksObtained;

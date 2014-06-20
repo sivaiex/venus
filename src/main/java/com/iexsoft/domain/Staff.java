@@ -1,17 +1,10 @@
 package com.iexsoft.domain;
 
-import java.io.Serializable;
-
-
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "staff")
-public class Staff extends Domain implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4093982725442212490L;
+public class Staff extends Domain {
 
 	@Field("first_name")
 	private String firstName;
@@ -23,7 +16,6 @@ public class Staff extends Domain implements Serializable {
 
 	@Field("mobile_phone")
 	private String mobilePhone;
-
 
 	public String getFirstName() {
 		return firstName;
@@ -49,8 +41,6 @@ public class Staff extends Domain implements Serializable {
 		this.sex = sex;
 	}
 
-	
-
 	public String getMobilePhone() {
 		return mobilePhone;
 	}
@@ -59,5 +49,4 @@ public class Staff extends Domain implements Serializable {
 		this.mobilePhone = mobilePhone;
 	}
 
-	
 }

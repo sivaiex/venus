@@ -1,18 +1,12 @@
 package com.iexsoft.domain;
 
-import java.io.Serializable;
 import java.util.Date;
-
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "student_account")
-public class StudentAccount extends Domain implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4093982725442212490L;
+public class CopyOfStudentAccount extends Domain {
 
 	@Field("student_id")
 	private String student;

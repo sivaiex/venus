@@ -1,18 +1,15 @@
 package com.iexsoft.domain;
 
-import java.io.Serializable;
 import java.util.Date;
-
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "school")
-public class School implements Serializable {
+public class School {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4065197733627571051L;
 
 	private String name;
 	@Field("reg_number")
