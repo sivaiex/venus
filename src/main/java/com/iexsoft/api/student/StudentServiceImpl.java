@@ -1,25 +1,21 @@
-package com.iexsoft.controller.student;
+package com.iexsoft.api.student;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.validation.Valid;
+import javax.ws.rs.core.Response;
 
+import org.apache.commons.lang.StringUtils;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iexsoft.api.util.FieldError;
 import com.iexsoft.domain.Student;
 import com.iexsoft.domain.StudentAccountActivity;
 import com.iexsoft.domain.StudentAttendance;
@@ -36,41 +32,32 @@ import com.iexsoft.repositories.StudentRecordRepository;
 import com.iexsoft.repositories.StudentRepository;
 import com.iexsoft.service.DomainService;
 
-@Controller
-public class StudentController {
+public class StudentServiceImpl implements StudentService {
 
-	private static final Logger LOG = LoggerFactory.getLogger(StudentController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(StudentServiceImpl.class);
 
-	
 	@Autowired
 	DomainService domainService;
+
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	/*
 	 * Get all Students, probably we may not using this method because is going
 	 * to return all students list in school
 	 */
-	@RequestMapping(value = "/students", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<Student> getStudents() {
+		LOG.debug("get all students called");
 		return domainService.getRepository(StudentRepository.class).findAll();
 
 	}
 
-	/*
-	 * Get Students by last name
-	 */
-	@RequestMapping(value = "/students/ln/{lastname}", method = RequestMethod.GET)
-	@ResponseBody
 	public List<Student> getStudentsByLastName(@PathVariable("lastname") String surname) {
 		return domainService.getRepository(StudentRepository.class).findByLastName(surname);
 
 	}
 
-	/*
-	 * Get Students by First name
-	 */
-	@RequestMapping(value = "/students/fn/{firstname}", method = RequestMethod.GET)
-	@ResponseBody
 	public List<Student> getStudentsByFirstName(@PathVariable("firstname") String firstname) {
 		return domainService.getRepository(StudentRepository.class).findByFirstName(firstname);
 
@@ -79,8 +66,7 @@ public class StudentController {
 	/*
 	 * Get Students by Date of Birth
 	 */
-	@RequestMapping(value = "/students/dob/{dateOfBirth}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<Student> getStudentsByDOB(@PathVariable("dateOfBirth") Date dateofBirth) {
 		return domainService.getRepository(StudentRepository.class).findByDateOfBirth(dateofBirth);
 
@@ -89,8 +75,7 @@ public class StudentController {
 	/*
 	 * Get Students by Admission Number
 	 */
-	@RequestMapping(value = "/students/adm/{admissionNumber}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<Student> getStudentsByAdmissionNumber(@PathVariable("admissionNumber") String admissionNumber) {
 		return domainService.getRepository(StudentRepository.class).findByadmissionNumber(admissionNumber);
 
@@ -99,8 +84,7 @@ public class StudentController {
 	/*
 	 * Get Students by Father
 	 */
-	@RequestMapping(value = "/students/father/{father}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<Student> getStudentsByFather(@PathVariable("father") String father) {
 		return domainService.getRepository(StudentRepository.class).findByFather(father);
 
@@ -109,8 +93,7 @@ public class StudentController {
 	/*
 	 * Get Students by Mother
 	 */
-	@RequestMapping(value = "/students/mother/{mother}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<Student> getStudentsByMother(@PathVariable("mother") String mother) {
 		return domainService.getRepository(StudentRepository.class).findByMother(mother);
 
@@ -119,8 +102,7 @@ public class StudentController {
 	/*
 	 * Search students by last name match
 	 */
-	@RequestMapping(value = "/students/lns/{lastname}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<Student> searchStudentsByLastNameMatch(@PathVariable("lastname") String lastname) {
 		return domainService.searchStudentsByLastName(lastname);
 
@@ -129,8 +111,7 @@ public class StudentController {
 	/*
 	 * Search students by first name match
 	 */
-	@RequestMapping(value = "/students/fns/{firstname}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<Student> searchStudentsByFirstNameMatch(@PathVariable("firstname") String firstname) {
 		return domainService.searchStudentsByFirstName(firstname);
 
@@ -139,8 +120,7 @@ public class StudentController {
 	/*
 	 * Search students by Birth date
 	 */
-	@RequestMapping(value = "/students/month/{month}/date/{date}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<Student> searchStudentsByBirthDate(@PathVariable("month") int month, @PathVariable("date") int date) {
 		return domainService.searchStudentsBirthDate(month, date);
 
@@ -149,8 +129,7 @@ public class StudentController {
 	/*
 	 * Find students by class
 	 */
-	@RequestMapping(value = "/students/class/{classId}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<Student> getStudentsByBirthDate(@PathVariable("classId") String classId) {
 		return domainService.getRepository(StudentRepository.class).findByClassId(classId);
 
@@ -159,8 +138,7 @@ public class StudentController {
 	/*
 	 * Get Student Account
 	 */
-	@RequestMapping(value = "/studentaccount/id/{studentid}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<StudentAccountActivity> getStudentAccountByStudentId(@PathVariable("studentid") String studentid) {
 		return domainService.getRepository(StudentAccountRepository.class).findByStudent(studentid);
 
@@ -169,8 +147,7 @@ public class StudentController {
 	/*
 	 * Get Student Activity
 	 */
-	@RequestMapping(value = "/studentactivity/id/{studentid}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<StudentNotes> getStudentActivityByStudentId(@PathVariable("studentid") String studentid) {
 		return domainService.getRepository(StudentActivitytRepository.class).findByStudent(studentid);
 
@@ -179,8 +156,7 @@ public class StudentController {
 	/*
 	 * Get Student Attendance
 	 */
-	@RequestMapping(value = "/studentattenddence/id/{studentid}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<StudentAttendance> getStudentAttendanceByStudentId(@PathVariable("studentid") String studentid) {
 		return domainService.getRepository(StudentAttendanceRepository.class).findByStudent(studentid);
 
@@ -189,8 +165,7 @@ public class StudentController {
 	/*
 	 * Get Student Marks
 	 */
-	@RequestMapping(value = "/studentmarks/id/{studentid}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<StudentMarks> getStudentMarksByStudentId(@PathVariable("studentid") String studentid) {
 		return domainService.getRepository(StudentMarksRepository.class).findByStudent(studentid);
 
@@ -199,8 +174,7 @@ public class StudentController {
 	/*
 	 * Get Student Promotion
 	 */
-	@RequestMapping(value = "/studentpromotion/id/{studentid}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<StudentPromotion> getStudentPromotionByStudentId(@PathVariable("studentid") String studentid) {
 		return domainService.getRepository(StudentPromotionRepository.class).findByStudent(studentid);
 
@@ -209,8 +183,7 @@ public class StudentController {
 	/*
 	 * Get Student Record
 	 */
-	@RequestMapping(value = "/studentrecord/id/{studentid}", method = RequestMethod.GET)
-	@ResponseBody
+
 	public List<StudentRecord> getStudentRecordByStudentId(@PathVariable("studentid") String studentid) {
 		return domainService.getRepository(StudentRecordRepository.class).findByStudent(studentid);
 
@@ -228,28 +201,18 @@ public class StudentController {
 	 * @return
 	 */
 
-	@RequestMapping(value = "/student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public Student saveStudent(@Valid @RequestBody Student student,BindingResult br) {
-	
-		List<FieldError> lister =  br.getFieldErrors();
-		for(FieldError fr:lister){
-			
-			LOG.error("error code1:"+fr.getCode());
-			LOG.error("error message1:"+fr.getDefaultMessage());
-			LOG.error("error message1:"+fr.getArguments());
-			
+	@Override
+	public Student saveStudent(Student student) {
+		List<FieldError> errors = validate(student);
+		if (errors.size() > 0) {
+			String errormessage = "";
+			try {
+				errormessage = objectMapper.writeValueAsString(errors);
+			} catch (Exception e) {
+			}
+			throw new StudentServiceException(Response.Status.BAD_REQUEST, errormessage);
 		}
-		
-		List<ObjectError> listeer =  br.getAllErrors();
-		for(ObjectError fr:listeer){
-			
-			LOG.error("error code2:"+fr.getCode());
-			LOG.error("error message2:"+fr.getDefaultMessage());
-			LOG.error("error message2:"+fr.getArguments());
-			
-		}
-		//LOG.error("error mesage {}",br);
+
 		return domainService.getRepository(StudentRepository.class).save(student);
 
 	}
@@ -257,8 +220,7 @@ public class StudentController {
 	/*
 	 * Save Student Attendance
 	 */
-	@RequestMapping(value = "/student/attendance", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
+
 	public StudentAttendance saveStudentAttendance(@Validated @RequestBody StudentAttendance studentattendance) {
 		return domainService.getRepository(StudentAttendanceRepository.class).save(studentattendance);
 
@@ -267,8 +229,7 @@ public class StudentController {
 	/*
 	 * Save Student Marks
 	 */
-	@RequestMapping(value = "/student/marks", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
+
 	public StudentMarks saveStudentMarks(@Validated @RequestBody StudentMarks studentMarks) {
 		return domainService.getRepository(StudentMarksRepository.class).save(studentMarks);
 
@@ -277,11 +238,28 @@ public class StudentController {
 	/*
 	 * Save Student Promotion
 	 */
-	@RequestMapping(value = "/student/promotion", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
+
 	public StudentPromotion saveStudentPromotion(@Validated @RequestBody StudentPromotion studentPromotion) {
 		return domainService.getRepository(StudentPromotionRepository.class).save(studentPromotion);
 
+	}
+
+	private List<FieldError> validate(Student student) {
+		List<FieldError> errorList = new ArrayList<FieldError>();
+		if (StringUtils.isBlank(student.getFirstName())) {
+			FieldError error = new FieldError();
+			error.setField("first_name");
+			error.setError("First Name Cannot be Empty");
+			errorList.add(error);
+		}
+		if (StringUtils.isBlank(student.getLastName())) {
+			FieldError error = new FieldError();
+			error.setField("last_Name");
+			error.setError("Surname Cannot be Empty");
+			errorList.add(error);
+		}
+
+		return errorList;
 	}
 
 }

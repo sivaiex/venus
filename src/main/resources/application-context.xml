@@ -6,16 +6,12 @@
 	 http://www.springframework.org/schema/context
                          http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
-	<import resource="mongo-config.xml" />
-	<context:component-scan base-package="com.iexsoft.service" />
-	<context:component-scan base-package="com.iexsoft.controller" />
 	
-    <context:property-placeholder  location="classpath:/conf/venus.properties" ignore-unresolvable="true" />
-    <context:property-placeholder  location="classpath:/conf/messages.properties" ignore-unresolvable="true" />
+	<context:component-scan base-package="com.iexsoft.service" />
+	
+	<context:component-scan base-package="com.iexsoft.api" />
+	
+    <context:property-placeholder  location="classpath:venus.properties" ignore-unresolvable="true" />
    
    
-	<bean class="org.springframework.context.support.ResourceBundleMessageSource"
-		id="messageSource">
-		<property name="basename" value="messages" />
-	</bean>
 </beans>

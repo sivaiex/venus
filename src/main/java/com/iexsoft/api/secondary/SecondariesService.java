@@ -1,9 +1,8 @@
-package com.iexsoft.controller.student;
+package com.iexsoft.api.secondary;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,8 +27,8 @@ import com.iexsoft.repositories.SubjectRepository;
 import com.iexsoft.repositories.TestTypeRepository;
 import com.iexsoft.service.DomainService;
 
-@Controller
-public class SecondariesController {
+
+public class SecondariesService {
 
 	@Autowired
 	DomainService domainService;

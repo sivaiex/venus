@@ -114,7 +114,6 @@ public class DomainService {
 
 	@SuppressWarnings("rawtypes")
 	private Map<String, MongoRepository> repoMap;
-
 	/*
 	 * Any pre-loading of configuration data etc..
 	 */
@@ -122,6 +121,7 @@ public class DomainService {
 	@PostConstruct
 	private void init() {
 		log.debug("Initializing application....");
+		
 		// Roles
 		if (roleRepository.findAll().size() == 0) {
 			log.debug("Loading Default Roles ....");
@@ -238,4 +238,5 @@ public class DomainService {
 		return null;
 
 	}
+	
 }

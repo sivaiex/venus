@@ -30,6 +30,4 @@
 	
 	<mongo:repositories base-package="com.iexsoft.repositories"/>
     
-	<context:annotation-config />
-	
 </beans>

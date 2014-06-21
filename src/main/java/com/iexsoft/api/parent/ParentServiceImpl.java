@@ -1,4 +1,4 @@
-package com.iexsoft.controller.student;
+package com.iexsoft.api.parent;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import com.iexsoft.repositories.ParentRepository;
 import com.iexsoft.service.DomainService;
 
 @Controller
-public class ParentController {
+public class ParentServiceImpl implements ParentService {
 
 	@Autowired
 	DomainService domainService;
