@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.iexsoft.api.ServiceURL;
 import com.iexsoft.domain.Student;
 import com.iexsoft.domain.StudentAccountActivity;
 import com.iexsoft.domain.StudentAttendance;
@@ -31,7 +32,7 @@ public interface StudentService {
 	 * to return all students list in school
 	 */
 	@GET
-	@Path("/students")
+	@Path(ServiceURL.STUDENT_SERVICE_All_STUDENTS)
 	public List<Student> getStudents();
 
 	/*
@@ -126,7 +127,7 @@ public interface StudentService {
 	 * @return
 	 */
 	@POST
-	@Path("/student")
+	@Path(ServiceURL.STUDENT_SERVICE_CREATE_STUDENT)
 	public Student saveStudent(Student student);
 
 	/*

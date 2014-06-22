@@ -1,4 +1,4 @@
-package com.iexsoft.api.student;
+package com.iexsoft.api.school;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
