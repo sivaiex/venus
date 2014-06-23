@@ -47,7 +47,6 @@ public class StudentServiceImpl implements StudentService {
 	 */
 
 	public List<Student> getStudents() {
-		LOG.debug("get all students called");
 		return domainService.getRepository(StudentRepository.class).findAll();
 
 	}
@@ -75,7 +74,7 @@ public class StudentServiceImpl implements StudentService {
 	 * Get Students by Admission Number
 	 */
 
-	public List<Student> getStudentsByAdmissionNumber(@PathVariable("admissionNumber") String admissionNumber) {
+	public Student getStudentByAdmissionNumber(@PathVariable("admissionNumber") String admissionNumber) {
 		return domainService.getRepository(StudentRepository.class).findByadmissionNumber(admissionNumber);
 
 	}
@@ -250,11 +249,7 @@ public class StudentServiceImpl implements StudentService {
 		return errorList;
 	}
 
-	@Override
-	public Student getStudentByAdmissionNumber(String admissionNumber) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public List<StudentAccountActivity> getStudentAccountActivityByStudentId(String studentid) {

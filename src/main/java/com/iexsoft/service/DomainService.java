@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.meta.When;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Service;
 
@@ -210,33 +213,34 @@ public class DomainService {
 	 */
 
 	public List<Student> searchStudentsByLastName(String lastname) {
-		// mongoTemplate.find(new Query(""), Student.class)
-		return null;
-
+		Query query = new Query(Criteria.where("lastName").regex("/"+lastname+"/"));
+	    return mongoTemplate.find(query, Student.class);
 	}
 
 	public List<Student> searchStudentsByFirstName(String firstname) {
-		// mongoTemplate.find(new Query(""), Student.class)
-		return null;
+		Query query = new Query(Criteria.where("firstName").regex("/"+firstname+"/"));
+	    return mongoTemplate.find(query, Student.class);
 
 	}
 
 	public List<Student> searchStudentsBirthDate(int month, int date) {
-		// mongoTemplate.find(new Query(""), Student.class)
+		//Query query = new Query(Criteria.where("lastName").regex("/"+lastname+"/"));
+	   // return mongoTemplate.find(query, Student.class);
 		return null;
 
 	}
 
 	public List<Parent> searchParentsByLastName(String lastname) {
-		// mongoTemplate.find(new Query(""), Student.class)
-		return null;
+		Query query = new Query(Criteria.where("lastName").regex("/"+lastname+"/"));
+	    return mongoTemplate.find(query, Parent.class);
 
 	}
 
 	public List<Parent> searchParentsByFirstName(String firstname) {
-		// mongoTemplate.find(new Query(""), Student.class)
-		return null;
+		Query query = new Query(Criteria.where("firstName").regex("/"+firstname+"/"));
+	    return mongoTemplate.find(query, Parent.class);
 
 	}
+	
 	
 }
