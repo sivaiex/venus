@@ -5,34 +5,64 @@ import java.util.Date;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Document(collection = "student_account")
 public class StudentAccountActivity extends Domain {
 
 	@Field("student_id")
+	@JsonProperty(value = "student_id")
 	private String student;
+
 	@Field("fee_id")
+	@JsonProperty(value = "fee_id")
 	private String fee;
+
 	@Field("due_date")
+	@JsonProperty(value = "due_date")
 	private Date dueDate;
+
 	private String status;
+
 	@Field("paid_date")
+	@JsonProperty(value = "paid_date")
 	private Date paidDate;
+
+	public float getCreditBalance() {
+		return creditBalance;
+	}
+
+	public void setCreditBalance(float creditBalance) {
+		this.creditBalance = creditBalance;
+	}
+
 	@Field("paid_method")
+	@JsonProperty(value = "paid_method")
 	private String paidMedthod;
-	
+
 	// Due from the current term
+	@Field("current_due")
+	@JsonProperty(value = "current_due")
 	private float currentDue;
-	
+
 	/**
-	* Due from previous balances if any
-	* previous due could be +ve or -ve, If student overpays in previously, 
-	* that will be adjusted
-	* 
-	*/
-	private float previousDue;
+	 * credit balances if any previous due could be +ve or -ve, If student
+	 * overpays in previously, that will be adjusted
+	 * 
+	 */
+	@Field("credit_balance")
+	@JsonProperty(value = "credit_balance")
+	private float creditBalance;
 	private float discount;
+
+	@Field("total_due")
+	@JsonProperty(value = "total_due")
 	private float totalDue;
+
+	@Field("paid_amount")
+	@JsonProperty(value = "paid_amount")
 	private float paidAmount;
+
 	private float balance;
 
 	public String getStudent() {
@@ -91,14 +121,6 @@ public class StudentAccountActivity extends Domain {
 		this.currentDue = currentDue;
 	}
 
-	public float getPreviousDue() {
-		return previousDue;
-	}
-
-	public void setPreviousDue(float previousDue) {
-		this.previousDue = previousDue;
-	}
-
 	public float getDiscount() {
 		return discount;
 	}
@@ -130,7 +152,5 @@ public class StudentAccountActivity extends Domain {
 	public void setBalance(float balance) {
 		this.balance = balance;
 	}
-	
-	
 
 }

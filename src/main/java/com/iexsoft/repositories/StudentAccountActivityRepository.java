@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.iexsoft.domain.StudentAccountActivity;
 
 @Repository
-public interface StudentAccountRepository extends MongoRepository<StudentAccountActivity, String> {
+public interface StudentAccountActivityRepository extends MongoRepository<StudentAccountActivity, String> {
 	public List<StudentAccountActivity> findByStudent(String student);
 
 }

@@ -29,7 +29,7 @@ import com.iexsoft.repositories.RoleRepository;
 import com.iexsoft.repositories.SchoolRepository;
 import com.iexsoft.repositories.StaffRepository;
 import com.iexsoft.repositories.StaffTypeRepository;
-import com.iexsoft.repositories.StudentAccountRepository;
+import com.iexsoft.repositories.StudentAccountActivityRepository;
 import com.iexsoft.repositories.StudentAttendanceStatusRepository;
 import com.iexsoft.repositories.StudentMarksRepository;
 import com.iexsoft.repositories.StudentPromotionRepository;
@@ -95,7 +95,7 @@ public class DomainService {
 	private ClassTimeTableRepository classTimeTableRepository;
 
 	@Autowired
-	private StudentAccountRepository studentAccountRepository;
+	private StudentAccountActivityRepository studentAccountActivityRepository;
 
 	@Autowired
 	private StudentMarksRepository studentMarksRepository;
@@ -192,7 +192,7 @@ public class DomainService {
 		repoMap.put(StudyClassRepository.class.getName(), studyClassRepository);
 		repoMap.put(StudentRecordRepository.class.getName(), studentRecordRepository);
 		repoMap.put(FeeRepository.class.getName(), feeRepository);
-		repoMap.put(StudentAccountRepository.class.getName(), studentAccountRepository);
+		repoMap.put(StudentAccountActivityRepository.class.getName(), studentAccountActivityRepository);
 		repoMap.put(ClassTimeTableRepository.class.getName(), classTimeTableRepository);
 		repoMap.put(StudentMarksRepository.class.getName(), studentMarksRepository);
 		repoMap.put(StudentPromotionRepository.class.getName(), studentPromotionRepository);

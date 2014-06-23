@@ -11,6 +11,6 @@ import com.iexsoft.domain.School;
 public interface SchoolService {
 
 	@GET
-	@Path(ServiceURL.STUDENT_SERVICE_All_STUDENTS)
+	@Path(ServiceURL.All_STUDE)
 	public List<School> getschools();
 }

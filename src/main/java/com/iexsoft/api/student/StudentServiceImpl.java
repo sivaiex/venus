@@ -19,12 +19,11 @@ import com.iexsoft.api.util.FieldError;
 import com.iexsoft.domain.Student;
 import com.iexsoft.domain.StudentAccountActivity;
 import com.iexsoft.domain.StudentAttendance;
+import com.iexsoft.domain.StudentCredit;
 import com.iexsoft.domain.StudentMarks;
 import com.iexsoft.domain.StudentNotes;
 import com.iexsoft.domain.StudentPromotion;
 import com.iexsoft.domain.StudentRecord;
-import com.iexsoft.repositories.StudentAccountRepository;
-import com.iexsoft.repositories.StudentActivitytRepository;
 import com.iexsoft.repositories.StudentAttendanceRepository;
 import com.iexsoft.repositories.StudentMarksRepository;
 import com.iexsoft.repositories.StudentPromotionRepository;
@@ -139,19 +138,8 @@ public class StudentServiceImpl implements StudentService {
 	 * Get Student Account
 	 */
 
-	public List<StudentAccountActivity> getStudentAccountByStudentId(@PathVariable("studentid") String studentid) {
-		return domainService.getRepository(StudentAccountRepository.class).findByStudent(studentid);
+	
 
-	}
-
-	/*
-	 * Get Student Activity
-	 */
-
-	public List<StudentNotes> getStudentActivityByStudentId(@PathVariable("studentid") String studentid) {
-		return domainService.getRepository(StudentActivitytRepository.class).findByStudent(studentid);
-
-	}
 
 	/*
 	 * Get Student Attendance
@@ -260,6 +248,30 @@ public class StudentServiceImpl implements StudentService {
 		}
 
 		return errorList;
+	}
+
+	@Override
+	public Student getStudentByAdmissionNumber(String admissionNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<StudentAccountActivity> getStudentAccountActivityByStudentId(String studentid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<StudentNotes> getStudentNotesByStudentId(String studentid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public StudentCredit getStudentCreditByStudentId(String studentid) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

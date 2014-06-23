@@ -18,7 +18,7 @@ public interface ParentService {
 	 * to return all students list in school
 	 */
 	@GET
-	@Path(ServiceURL.STUDENT_SERVICE_All_STUDENTS)
+	@Path(ServiceURL.All_PARENTS)
 	public List<Parent> getParents() ;
 
 	
