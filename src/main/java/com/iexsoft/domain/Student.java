@@ -46,6 +46,15 @@ public class Student extends Domain {
 
 	private String mother;
 	
+	@Field("admitted_class_id")
+	@JsonProperty(value="admitted_class_id")
+	private String admittedClassId;
+	
+	@Field("medium")
+	@JsonProperty(value="medium")
+	private String medium;
+	
+	
 	@Field("class_id")
 	@JsonProperty(value="class_id")
 	private String classId;
@@ -63,7 +72,7 @@ public class Student extends Domain {
 	private String nationality;
 	private String religion;
 	private String caste;
-	private String sex;
+	private String gender;
 
 	public String getFirstName() {
 		return firstName;
@@ -201,13 +210,30 @@ public class Student extends Domain {
 		this.caste = caste;
 	}
 
-	public String getSex() {
-		return sex;
+	public String getAdmittedClassId() {
+		return admittedClassId;
 	}
 
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setAdmittedClassId(String admittedClassId) {
+		this.admittedClassId = admittedClassId;
 	}
 
+	public String getMedium() {
+		return medium;
+	}
+
+	public void setMedium(String medium) {
+		this.medium = medium;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	
 	
 }

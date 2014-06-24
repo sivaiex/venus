@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.meta.When;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +24,7 @@ import com.iexsoft.repositories.FeeConcessionRepository;
 import com.iexsoft.repositories.FeePaidStatusRepository;
 import com.iexsoft.repositories.FeeRepository;
 import com.iexsoft.repositories.FeeTypeRepository;
+import com.iexsoft.repositories.MediumTypeRepository;
 import com.iexsoft.repositories.ParentRepository;
 import com.iexsoft.repositories.PhotoRepository;
 import com.iexsoft.repositories.PhotoTypeRepository;
@@ -111,6 +111,9 @@ public class DomainService {
 	
 	@Autowired
 	private PhotoTypeRepository photoTypeRepository;
+	
+	@Autowired
+	private MediumTypeRepository mediumTypeRepository;
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
@@ -171,6 +174,12 @@ public class DomainService {
 			log.debug("Loading Default PhotoTypes ....");
 			photoTypeRepository.save(ConfigData.getAllDefaultPhotoTypes());
 		}
+		
+		// Medium type
+		if (mediumTypeRepository.findAll().size() == 0) {
+			log.debug("Loading Default Medium types ....");
+			mediumTypeRepository.save(ConfigData.getAllDefaultMediumTypes());
+		 }
 
 		// Adding all repos to Map, so that we can easily retrieve the required
 		// repository

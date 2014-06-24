@@ -8,6 +8,7 @@ import java.util.Scanner;
 import com.iexsoft.domain.secondaries.ClassType;
 import com.iexsoft.domain.secondaries.FeePaidStatus;
 import com.iexsoft.domain.secondaries.FeeType;
+import com.iexsoft.domain.secondaries.MediumType;
 import com.iexsoft.domain.secondaries.PhotoType;
 import com.iexsoft.domain.secondaries.Role;
 import com.iexsoft.domain.secondaries.StaffType;
@@ -243,7 +244,7 @@ public class ConfigData {
 
 		List<PhotoType> photoTypes = new ArrayList<PhotoType>();
 		try {
-			InputStream subjectsStream = ConfigData.class.getResourceAsStream("phototypes.csv");
+			InputStream subjectsStream = ConfigData.class.getResourceAsStream("photo_types.csv");
 			Scanner scanner = new Scanner(subjectsStream);
 
 			while (scanner.hasNext()) {
@@ -265,6 +266,33 @@ public class ConfigData {
 		return photoTypes;
 
 	}
+
+ public static List<MediumType> getAllDefaultMediumTypes() {
+
+	List<MediumType> mediumTypes = new ArrayList<MediumType>();
+	try {
+		InputStream subjectsStream = ConfigData.class.getResourceAsStream("medium_types.csv");
+		Scanner scanner = new Scanner(subjectsStream);
+
+		while (scanner.hasNext()) {
+			String curLine = scanner.nextLine();
+			String[] mediumTypesData = curLine.split(";");
+			MediumType mediumType = new MediumType();
+			mediumType.setName(mediumTypesData[0]);
+			mediumType.setDescription(mediumTypesData[1]);
+			mediumTypes.add(mediumType);
+		}
+
+		try {
+			scanner.close();
+		} catch (Exception e) {
+		}
+	} catch (Exception e) {
+	}
+
+	return mediumTypes;
+
+}
 
 	/*
 	 * public static List<FeeConcession> getAllDefaultFeeConcession() {
