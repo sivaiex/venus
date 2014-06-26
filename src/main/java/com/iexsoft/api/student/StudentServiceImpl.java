@@ -11,9 +11,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.iexsoft.api.util.FieldError;
 import com.iexsoft.domain.Student;
@@ -45,18 +42,20 @@ public class StudentServiceImpl implements StudentService {
 	 * Get all Students, probably we may not using this method because is going
 	 * to return all students list in school
 	 */
-
+   @Override
 	public List<Student> getStudents() {
 		return domainService.getRepository(StudentRepository.class).findAll();
 
 	}
 
-	public List<Student> getStudentsByLastName(@PathVariable("lastname") String surname) {
+   @Override
+	public List<Student> getStudentsByLastName(String surname) {
 		return domainService.getRepository(StudentRepository.class).findByLastName(surname);
 
 	}
-
-	public List<Student> getStudentsByFirstName(@PathVariable("firstname") String firstname) {
+    
+   @Override
+	public List<Student> getStudentsByFirstName(String firstname) {
 		return domainService.getRepository(StudentRepository.class).findByFirstName(firstname);
 
 	}
@@ -64,8 +63,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Get Students by Date of Birth
 	 */
-
-	public List<Student> getStudentsByDOB(@PathVariable("dateOfBirth") Date dateofBirth) {
+    @Override
+	public List<Student> getStudentsByDOB(Date dateofBirth) {
 		return domainService.getRepository(StudentRepository.class).findByDateOfBirth(dateofBirth);
 
 	}
@@ -74,7 +73,8 @@ public class StudentServiceImpl implements StudentService {
 	 * Get Students by Admission Number
 	 */
 
-	public Student getStudentByAdmissionNumber(@PathVariable("admissionNumber") String admissionNumber) {
+    @Override
+	public Student getStudentByAdmissionNumber(String admissionNumber) {
 		return domainService.getRepository(StudentRepository.class).findByadmissionNumber(admissionNumber);
 
 	}
@@ -82,8 +82,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Get Students by Father
 	 */
-
-	public List<Student> getStudentsByFather(@PathVariable("father") String father) {
+    @Override
+	public List<Student> getStudentsByFather(String father) {
 		return domainService.getRepository(StudentRepository.class).findByFather(father);
 
 	}
@@ -91,8 +91,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Get Students by Mother
 	 */
-
-	public List<Student> getStudentsByMother(@PathVariable("mother") String mother) {
+    @Override
+	public List<Student> getStudentsByMother( String mother) {
 		return domainService.getRepository(StudentRepository.class).findByMother(mother);
 
 	}
@@ -100,8 +100,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Search students by last name match
 	 */
-
-	public List<Student> searchStudentsByLastNameMatch(@PathVariable("lastname") String lastname) {
+   @Override
+	public List<Student> searchStudentsByLastNameMatch(String lastname) {
 		return domainService.searchStudentsByLastName(lastname);
 
 	}
@@ -109,8 +109,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Search students by first name match
 	 */
-
-	public List<Student> searchStudentsByFirstNameMatch(@PathVariable("firstname") String firstname) {
+    @Override
+	public List<Student> searchStudentsByFirstNameMatch(String firstname) {
 		return domainService.searchStudentsByFirstName(firstname);
 
 	}
@@ -118,8 +118,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Search students by Birth date
 	 */
-
-	public List<Student> searchStudentsByBirthDate(@PathVariable("month") int month, @PathVariable("date") int date) {
+    @Override
+	public List<Student> searchStudentsByBirthDate(int month, int date) {
 		return domainService.searchStudentsBirthDate(month, date);
 
 	}
@@ -127,8 +127,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Find students by class
 	 */
-
-	public List<Student> getStudentsByBirthDate(@PathVariable("classId") String classId) {
+    @Override
+	public List<Student> getStudentsByBirthDate(String classId) {
 		return domainService.getRepository(StudentRepository.class).findByClassId(classId);
 
 	}
@@ -143,8 +143,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Get Student Attendance
 	 */
-
-	public List<StudentAttendance> getStudentAttendanceByStudentId(@PathVariable("studentid") String studentid) {
+    @Override
+	public List<StudentAttendance> getStudentAttendanceByStudentId(String studentid) {
 		return domainService.getRepository(StudentAttendanceRepository.class).findByStudent(studentid);
 
 	}
@@ -152,8 +152,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Get Student Marks
 	 */
-
-	public List<StudentMarks> getStudentMarksByStudentId(@PathVariable("studentid") String studentid) {
+	@Override
+	public List<StudentMarks> getStudentMarksByStudentId(String studentid) {
 		return domainService.getRepository(StudentMarksRepository.class).findByStudent(studentid);
 
 	}
@@ -161,8 +161,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Get Student Promotion
 	 */
-
-	public List<StudentPromotion> getStudentPromotionByStudentId(@PathVariable("studentid") String studentid) {
+	@Override
+	public List<StudentPromotion> getStudentPromotionByStudentId(String studentid) {
 		return domainService.getRepository(StudentPromotionRepository.class).findByStudent(studentid);
 
 	}
@@ -171,7 +171,8 @@ public class StudentServiceImpl implements StudentService {
 	 * Get Student Record
 	 */
 
-	public List<StudentRecord> getStudentRecordByStudentId(@PathVariable("studentid") String studentid) {
+	@Override
+	public List<StudentRecord> getStudentRecordByStudentId(String studentid) {
 		return domainService.getRepository(StudentRecordRepository.class).findByStudent(studentid);
 
 	}
@@ -207,8 +208,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Save Student Attendance
 	 */
-
-	public StudentAttendance saveStudentAttendance(@Validated @RequestBody StudentAttendance studentattendance) {
+	@Override
+	public StudentAttendance saveStudentAttendance(StudentAttendance studentattendance) {
 		return domainService.getRepository(StudentAttendanceRepository.class).save(studentattendance);
 
 	}
@@ -216,8 +217,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Save Student Marks
 	 */
-
-	public StudentMarks saveStudentMarks(@Validated @RequestBody StudentMarks studentMarks) {
+	@Override
+	public StudentMarks saveStudentMarks(StudentMarks studentMarks) {
 		return domainService.getRepository(StudentMarksRepository.class).save(studentMarks);
 
 	}
@@ -225,8 +226,8 @@ public class StudentServiceImpl implements StudentService {
 	/*
 	 * Save Student Promotion
 	 */
-
-	public StudentPromotion saveStudentPromotion(@Validated @RequestBody StudentPromotion studentPromotion) {
+	@Override
+	public StudentPromotion saveStudentPromotion(StudentPromotion studentPromotion) {
 		return domainService.getRepository(StudentPromotionRepository.class).save(studentPromotion);
 
 	}
