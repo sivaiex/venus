@@ -33,7 +33,7 @@ public interface StudentService {
 	 * to return all students list in school
 	 */
 	@GET
-	@Path(ServiceURL.All_STUDENTS)
+	@Path("/students")
 	public List<Student> getStudents();
 
 	/*
